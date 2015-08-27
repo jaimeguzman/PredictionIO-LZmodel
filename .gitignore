@@ -27,3 +27,8 @@ pio.log
 scala-tutorials/
 templates/
 test/
+
+### DATA 
+letterSequences
+*.seq
+*.zip

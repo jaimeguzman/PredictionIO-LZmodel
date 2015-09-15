@@ -1,5 +1,6 @@
 *.class
 *.log
+.idea 
 
 # sbt specific
 .cache
@@ -12,9 +13,15 @@ src_managed/
 project/boot/
 project/plugins/project/
 
+#Damn Stuff
+templates/MLlib-Decision-TreesBONITO/
+
 # Scala-IDE specific
 .scala_dependencies
 .worksheet
+
+
+
 
 #Vagrant
 .vagrant
@@ -25,7 +32,7 @@ pio.log
 #Dev and Learn
 
 scala-tutorials/
-templates/
+#templates/
 test/
 
 ### DATA 

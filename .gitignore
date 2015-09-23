@@ -37,6 +37,7 @@ manifest.json
 pio.log
 target/
 /pio.sbt
+src/main/main.iml
 
 #Dev and Learn
 

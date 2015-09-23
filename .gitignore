@@ -39,3 +39,13 @@ test/
 letterSequences
 *.seq
 *.zip
+
+
+# ML_PIO
+
+pio-runtime-jars/
+src/main/scala/Engine.scala~
+src/main/scala/NaiveBayesAlgorithm.scala~
+src/main/scala/*.scala~
+
+

@@ -1,6 +1,8 @@
 *.class
 *.log
 .idea 
+.DS_Store
+.templates-cache
 
 # sbt specific
 .cache
@@ -28,6 +30,13 @@ templates/MLlib-Decision-TreesBONITO/
 
 #PIO
 pio.log
+data/*.txt
+data/*.seq
+data/*.zip
+manifest.json
+pio.log
+target/
+/pio.sbt
 
 #Dev and Learn
 

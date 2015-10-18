@@ -1,4 +1,12 @@
 package org.template.classification
+
+/**
+ * Created by jguzman on 29-09-15.
+ *
+ * @TODO: MIgrar o apuntar hacia aca el codigo del decision tree
+ */
+
+
 import scala.collection.JavaConverters._
 import scala.collection.JavaConversions._
 import org.apache.spark.SparkContext
@@ -21,17 +29,19 @@ import org.apache.spark.mllib.util.MLUtils
 
 import grizzled.slf4j.Logger
 
-/**
- * @TODO: Migrar a LempelZiv SRC file
- */
 
+class LempelZivAlgorithm {
 
+}
+/*
 case class AlgorithmParams(
-  
+
   numClasses: Integer,
   maxDepth: Integer,
   maxBins: Integer
 ) extends Params
+
+
 
 // extends P2LAlgorithm because the MLlib's NaiveBayesModel doesn't contain RDD.
 class Algorithm(val ap: AlgorithmParams)
@@ -41,19 +51,19 @@ class Algorithm(val ap: AlgorithmParams)
 
   def train(sc: SparkContext,data: PreparedData): DecisionTreeModel = {
     // MLLib DecisionTree cannot handle empty training data.
-    /*require(!data.labeledPoints.take(1).isEmpty,
+    require(!data.labeledPoints.take(1).isEmpty,
       s"RDD[labeldPoints] in PreparedData cannot be empty." +
-      " Please check if DataSource generates TrainingData" +
-      " and Preprator generates PreparedData correctly.")
-     */
-    //var m=Map[Integer,Integer]()
-    //var categoricalFeaturesInfo: java.util.Map[Integer,Integer] = mapAsJavaMap[Integer, Integer](m)
-    //val impurity = "gini"
-    
-    //val stat= new Strategy(algo = Classification, impurity = Gini, ap.maxDepth, ap.numClasses,ap.maxBins, categoricalFeaturesInfo)
-    //val tree=new DecisionTree(stat)
-    //tree.run(data.labeledPoints)
-    
+        " Please check if DataSource generates TrainingData" +
+        " and Preprator generates PreparedData correctly.")
+
+    var m=Map[Integer,Integer]()
+    var categoricalFeaturesInfo: java.util.Map[Integer,Integer] = mapAsJavaMap[Integer, Integer](m)
+    val impurity = "gini"
+
+    val stat= new Strategy(algo = Classification, impurity = Gini, ap.maxDepth, ap.numClasses,ap.maxBins, categoricalFeaturesInfo)
+    val tree=new DecisionTree(stat)
+    tree.run(data.labeledPoints)
+
   }
 
   def predict(model: DecisionTreeModel, query: Query): PredictedResult = {
@@ -63,3 +73,4 @@ class Algorithm(val ap: AlgorithmParams)
   }
 
 }
+*/

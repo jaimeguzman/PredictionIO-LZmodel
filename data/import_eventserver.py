@@ -44,7 +44,7 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser(   description="Import sample data for classification engine")
   parser.add_argument('--access_key', default='invald_access_key')
   parser.add_argument('--url',        default="http://localhost:7070")
-  parser.add_argument('--file',       default="./data/msnbc990928-10entry.seq")
+  parser.add_argument('--file',       default="./data/msnbc990928-letter-split10.seq")
 
   args = parser.parse_args()
   print args

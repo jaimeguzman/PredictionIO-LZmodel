@@ -65,30 +65,41 @@ class DataSource(val dsp: DataSourceParams)
                             entityType = Some("user")
                           )(sc)
 
-    val dataEnRDD = eventosRDD.map{
-                            ev  => ev.event match {
-                              case "view" =>{
+    val webAccessRDD:RDD[WebAccess] = eventosRDD.map {
+      ev => val userAccess = // try {
+                  ev.event match {
+                      case "view" =>
 
-                                val entId = ev.entityId
-                                val page  = ev.properties.get[String]("page")
-                                val pos   = ev.properties.get[Int]("pos")
+                        //val entId = ev.entityId.toInt
+                        //val page = ev.properties.get[String]("page")
+                        //val pos = ev.properties.get[Int]("pos")
 
-                                System.out.print( " entityID\t"+entId+"\tpage:\t "+page+"\tpos\t "+pos+"\t "    )
+                        WebAccess(Some(ev.entityId.toInt),
+                                  Some(ev.properties.get[String]("page")),
+                                  Some(ev.properties.get[Int]("pos")))
 
-                              }
-                              case _ => throw new Exception(s"Evento no esperado, ${ev} ha sido leido")
-
-                            }
-
-                  }
-
-    println("::::::::RATSLABS:::dataEnRDD "+dataEnRDD.getClass )
-    dataEnRDD.foreach( f => println( f ))
+                        //System.out.print(" entityID\t" + entId + "\tpage:\t " + page + "\tpos\t " + pos + "\t ")
 
 
+                      case _ => throw new Exception(s"Evento no esperado, ${ev} ha sido leido")
+
+                    }
+            /*} catch {
+                    case e: Exception => {
+                      logger.error(s"No se pudo convertir el ${ev} a WebAccessRDD. Exception: ${e}.")
+                      throw e
+                    }
+                  }*/
+        userAccess
+    }.cache()
+
+    println("::::::::RATSLABS:::webAcessRDD "+webAccessRDD.getClass )
+    webAccessRDD.foreach( f => println( f ))
 
 
 
+
+    /**
     val puntosEtiquetadosPT: RDD[LabeledPoint] = eventosDB.aggregateProperties(
       appId = dsp.appId,
       entityType = "user",
@@ -117,10 +128,10 @@ class DataSource(val dsp: DataSourceParams)
       }
 
 
-    }   //end map //
+    }**/   //end map //
 
     print("\n\n\n \n ")
-    println("\n::::::::RATSLABS::: labeledPOINTS loaded count()"+ puntosEtiquetadosPT.count())
+    println("\n::::::::RATSLABS::: labeledPOINTS loaded count()"+ webAccessRDD.count())
 
 
 
@@ -130,13 +141,18 @@ class DataSource(val dsp: DataSourceParams)
 
     print("\n\n\n \n\n ")
 
-    new TrainingData(puntosEtiquetadosPT)
+    new TrainingData(webAccessRDD)
   }
 }
 
+case class WebAccess(
+                      user: Option[Int],
+                      page: Option[String],
+                      pos:  Option[Int]
 
+                      )extends Serializable
 
 
 class TrainingData(
-     val labeledPoints: RDD[LabeledPoint]
+     val webaccess: RDD[WebAccess]
 ) extends Serializable

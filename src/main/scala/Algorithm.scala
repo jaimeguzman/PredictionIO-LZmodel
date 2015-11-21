@@ -6,7 +6,7 @@ import scala.collection.JavaConversions._
 
 
 
-import io.prediction.controller.{Params, P2LAlgorithm}
+import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel}
 import org.apache.spark.SparkContext
 
 import org.apache.spark.mllib.linalg.Vector
@@ -53,13 +53,13 @@ case class AlgorithmParams(
 
  class Algorithm(val ap: AlgorithmParams)
   extends P2LAlgorithm [PreparedData,
-                        DecisionTreeModel,
+    LZModel,
                         Query,
                         PredictedResult] {
 
   @transient lazy val logger = Logger[this.type]
 
-  def train(sc: SparkContext ,   data: PreparedData): DecisionTreeModel = {
+  def train(sc: SparkContext ,   data: PreparedData): LZModel = {
 
 
     System.out.print( "Exsiten muchos puntos que quiero ivnestigar con los RDD" )
@@ -86,9 +86,7 @@ case class AlgorithmParams(
     //rows.collect().foreach(a => println(a.toString() ))
 
 
-
-
-/**
+    /**
 
     require(!data.labeledPoints.take(1).isEmpty,
       s"RDD[labeldPoints] in PreparedData cannot be empty." +
@@ -96,18 +94,16 @@ case class AlgorithmParams(
         " and Preprator generates PreparedData correctly.") **/
 
 
-
-
-      var m=Map[Integer,Integer]()
+    val m = Map[Integer, Integer]()
       var categoricalFeaturesInfo: java.util.Map[Integer,Integer] = mapAsJavaMap[Integer, Integer](m)
       val impurity = "gini"
 
       val stat=   new Strategy(algo = Classification, impurity = Gini, 5, 3,100, categoricalFeaturesInfo)
       val tree=   new DecisionTree(stat)
-      tree.run(data.labeledPoints)
+//      tree.run()
 
 
-
+       new LZModel(sc)
 
 
 
@@ -121,7 +117,7 @@ case class AlgorithmParams(
 
 
   /**El predictor es la lectura del TRIE LZ ***/
-  def predict(model: DecisionTreeModel, query: Query): PredictedResult = {
+  def predict(model: LZModel, query: Query): PredictedResult = {
 
 
 
@@ -134,7 +130,14 @@ case class AlgorithmParams(
   }
 
 
+   class Model(val dlModel: Any, val sc: SparkContext)
+     extends PersistentModel[AlgorithmParams] {
 
+     // Sparkling water models are not deserialization-friendly
+     def save(id: String, params: AlgorithmParams, sc: SparkContext): Boolean = {
+       false
+     }
+   }
 
 
 

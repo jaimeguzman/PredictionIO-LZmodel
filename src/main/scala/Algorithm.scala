@@ -9,16 +9,14 @@ import scala.collection.JavaConversions._
 import io.prediction.controller.{Params, P2LAlgorithm}
 import org.apache.spark.SparkContext
 
-import org.apache.spark.mllib.linalg.Vectors
-
+import org.apache.spark.mllib.linalg.Vector
+import org.apache.spark.rdd.RDD
 
 import org.apache.spark.mllib.tree.DecisionTree
 import org.apache.spark.mllib.tree.model.DecisionTreeModel
-import org.apache.spark.mllib.tree.configuration.Algo
 import org.apache.spark.mllib.tree.configuration.Strategy
 
-import scala.collection.JavaConverters._
-import org.apache.spark.mllib.util.MLUtils
+
 
 import org.apache.spark.mllib.tree.impurity.{Variance, Entropy, Gini, Impurity}
 import org.apache.spark.mllib.tree.configuration.Algo._
@@ -28,7 +26,7 @@ import scala.util.Random
 import grizzled.slf4j.Logger
 
 import io.prediction.controller.PersistentModel
-import io.prediction.controller.PersistentModelLoader
+
 
 
 /***
@@ -64,18 +62,55 @@ case class AlgorithmParams(
   def train(sc: SparkContext ,   data: PreparedData): DecisionTreeModel = {
 
 
+    System.out.print( "Exsiten muchos puntos que quiero ivnestigar con los RDD" )
+
+    println("\n\n\n")
+    val rows  = data.labeledPoints
+
+    println( "la clase de data es.::::" +   data.getClass )
+
+
+
+    println(data.labeledPoints.take(0)  )
+    println(data.labeledPoints.take(1)  )
+    println(data.labeledPoints.take(2)  )
+
+
+
+    println(data.labeledPoints.take(0).isEmpty  )
+    println(data.labeledPoints.take(1).isEmpty )
+    println(data.labeledPoints.take(2).isEmpty  )
+
+
+
+    //rows.collect().foreach(a => println(a.toString() ))
+
+
+
+
+/**
+
     require(!data.labeledPoints.take(1).isEmpty,
       s"RDD[labeldPoints] in PreparedData cannot be empty." +
         " Please check if DataSource generates TrainingData" +
-        " and Preprator generates PreparedData correctly.")
+        " and Preprator generates PreparedData correctly.") **/
 
-    var m=Map[Integer,Integer]()
-    var categoricalFeaturesInfo: java.util.Map[Integer,Integer] = mapAsJavaMap[Integer, Integer](m)
-    val impurity = "gini"
 
-    val stat= new Strategy(algo = Classification, impurity = Gini, 5, 3,100, categoricalFeaturesInfo)
-    val tree=new DecisionTree(stat)
-    tree.run(data.labeledPoints)
+
+
+      var m=Map[Integer,Integer]()
+      var categoricalFeaturesInfo: java.util.Map[Integer,Integer] = mapAsJavaMap[Integer, Integer](m)
+      val impurity = "gini"
+
+      val stat=   new Strategy(algo = Classification, impurity = Gini, 5, 3,100, categoricalFeaturesInfo)
+      val tree=   new DecisionTree(stat)
+      tree.run(data.labeledPoints)
+
+
+
+
+
+
 
 
   }

@@ -1,12 +1,14 @@
-package org.template.classification
+package cl.jguzman.piocompressapp
 
 import grizzled.slf4j.Logger
 import io.prediction.controller.{EmptyActualResult, EmptyEvaluationInfo, PDataSource, Params}
 import io.prediction.data.storage.Storage
 import org.apache.spark.SparkContext
+
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.rdd.RDD
+
 
 
 case class DataSourceParams(appId: Int) extends Params
@@ -23,9 +25,6 @@ class DataSource(val dsp: DataSourceParams)
     println("::::::::::::: HOLA FUCKING MUNDO ...")
 
 
-
-    logger.info( ":::::: Aqui se empieza algo con event DB ::::" )
-
     val eventsDb = Storage.getPEvents()
     
     logger.info( ":::::::::" + s"${eventsDb}" )
@@ -34,10 +33,11 @@ class DataSource(val dsp: DataSourceParams)
 
 
 
-    println(" Antes de entrar a val labelPoints")
+
     val labeledPoints: RDD[LabeledPoint] = eventsDb.aggregateProperties(
       appId         = dsp.appId,
       entityType    = "user",
+
       // only keep entities with these required properties defined
       required      = Some(List("plan", "page", "pos")))(sc) // aggregateProperties() returns RDD pair of entity ID and its aggregated properties
       .map { case (entityId, properties) =>

@@ -35,29 +35,35 @@ import io.prediction.controller.PersistentModel
  **/
 case class AlgorithmParams(
   numAlphabet: Integer
-
 ) extends Params
 
 
 
  class LZModel(
      val sc: SparkContext
+
      ) extends PersistentModel[AlgorithmParams] with Serializable {
-  @transient lazy val logger = Logger[this.type]
-  def save(id: String, params: AlgorithmParams, sc: SparkContext): Boolean = {
-    false
-    }
+
+    @transient lazy val logger = Logger[this.type]
+    def save(id: String, params: AlgorithmParams, sc: SparkContext): Boolean = {
+
+      false
+
+      }
+
   }
 
 
 
  class Algorithm(val ap: AlgorithmParams)
   extends P2LAlgorithm [PreparedData,
-    LZModel,
+                        LZModel,
                         Query,
                         PredictedResult] {
 
   @transient lazy val logger = Logger[this.type]
+
+
 
   def train(sc: SparkContext ,   data: PreparedData): LZModel = {
 
@@ -70,16 +76,12 @@ case class AlgorithmParams(
     println( "la clase de data es.::::" +   data.getClass )
 
 
-
-    println(data.labeledPoints.take(0)  )
-    println(data.labeledPoints.take(1)  )
-    println(data.labeledPoints.take(2)  )
-
-
-
     println(data.labeledPoints.take(0).isEmpty  )
-    println(data.labeledPoints.take(1).isEmpty )
-    println(data.labeledPoints.take(2).isEmpty  )
+    println(data.labeledPoints.take(0)  )
+    println(data.labeledPoints.count()  )
+    println(data.labeledPoints.first()  )
+    println(data.labeledPoints.toDebugString)
+    println(data.labeledPoints.toString() )
 
 
 
@@ -117,6 +119,7 @@ case class AlgorithmParams(
 
 
   /**El predictor es la lectura del TRIE LZ ***/
+
   def predict(model: LZModel, query: Query): PredictedResult = {
 
 
@@ -127,18 +130,8 @@ case class AlgorithmParams(
 
 
     new PredictedResult( 2.0 )
+
   }
-
-
-   class Model(val dlModel: Any, val sc: SparkContext)
-     extends PersistentModel[AlgorithmParams] {
-
-     // Sparkling water models are not deserialization-friendly
-     def save(id: String, params: AlgorithmParams, sc: SparkContext): Boolean = {
-       false
-     }
-   }
-
 
 
 

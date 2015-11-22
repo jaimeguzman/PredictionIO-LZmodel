@@ -9,14 +9,6 @@ import scala.collection.JavaConversions._
 import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel}
 import org.apache.spark.SparkContext
 
-import org.apache.spark.mllib.linalg.Vector
-import org.apache.spark.rdd.RDD
-
-import org.apache.spark.mllib.tree.DecisionTree
-import org.apache.spark.mllib.tree.model.DecisionTreeModel
-import org.apache.spark.mllib.tree.configuration.Strategy
-
-
 
 import org.apache.spark.mllib.tree.impurity.{Variance, Entropy, Gini, Impurity}
 import org.apache.spark.mllib.tree.configuration.Algo._
@@ -27,6 +19,9 @@ import grizzled.slf4j.Logger
 
 import io.prediction.controller.PersistentModel
 
+import cl.jguzman.piocompressapp.trie._
+
+import scala.math.Ordering.Implicits._
 
 
 /***
@@ -67,6 +62,11 @@ case class AlgorithmParams(
 
   def train(sc: SparkContext ,   data: PreparedData): LZModel = {
 
+    require(!data.labeledPoints.take(1).isEmpty,
+      s"RDD[WebAccess]  PreparedData no puede estar vacio." +
+        " Verificar si  DataSource genera TrainingData" +
+        " y Preprator genera PreparedData correctamente.")
+
 
     System.out.print( "Exsiten muchos puntos que quiero ivnestigar con los RDD" )
 
@@ -74,35 +74,93 @@ case class AlgorithmParams(
     val rows  = data.labeledPoints
 
     println( "la clase de data es.::::" +   data.getClass )
-
-
-    println(data.labeledPoints.take(0).isEmpty  )
-    println(data.labeledPoints.take(0)  )
+    println(data.labeledPoints.take(1).isEmpty  )
+    println(data.labeledPoints.take(1)  )
     println(data.labeledPoints.count()  )
     println(data.labeledPoints.first()  )
-    println(data.labeledPoints.toDebugString)
-    println(data.labeledPoints.toString() )
+//    println(data.labeledPoints.toDebugString)
+  //  println(data.labeledPoints.toString() )
 
 
 
     //rows.collect().foreach(a => println(a.toString() ))
 
-
-    /**
-
-    require(!data.labeledPoints.take(1).isEmpty,
-      s"RDD[labeldPoints] in PreparedData cannot be empty." +
-        " Please check if DataSource generates TrainingData" +
-        " and Preprator generates PreparedData correctly.") **/
+    val trie = new TrieNode()
 
 
-    val m = Map[Integer, Integer]()
-      var categoricalFeaturesInfo: java.util.Map[Integer,Integer] = mapAsJavaMap[Integer, Integer](m)
-      val impurity = "gini"
+    //data.labeledPoints.sortBy( c => c.user.get   ,true)
 
-      val stat=   new Strategy(algo = Classification, impurity = Gini, 5, 3,100, categoricalFeaturesInfo)
-      val tree=   new DecisionTree(stat)
-//      tree.run()
+    val lastUserWebAccess = data.labeledPoints.takeOrdered(1)(Ordering[Int].reverse.on(_.user.get) ).toList.head.user.get
+
+    System.out.println(":::::::::::el ultimo "+   lastUserWebAccess  )
+
+
+
+    // num de usuarios como parametro del algoritmo
+
+
+    System.out.println("*********" + data.labeledPoints.collect().apply(8).user.get  );
+
+
+    /*
+    for( j <- 0 until  data.labeledPoints.count().toInt ){
+        println("j :"+j+"   "+  data.labeledPoints.collect().apply( j ).user.get   )
+    }*/
+
+
+
+    val test = data.labeledPoints.map( x => List(x.user,x.page )  ).collect()
+    val test2 = test groupBy(_.head) toList //.sortBy( _._2.toList. )
+
+    //test2.sortBy( a => a._1.head    )(Ordering[Any].reverse)
+
+
+
+
+
+    for( it <- test2){
+      //      println(  it._1.head  );
+      print (  it._1.head +"\t "+"# "+it._2.length+"\t")
+
+           for(  i <- 0 until  it._2.length ){
+
+                  print(" "+ it._2.apply(i).last.get )
+
+           }
+      println()
+
+
+
+
+    }
+
+    val tmp: List[String] = Nil
+
+    /*
+    for( i <- 0 to lastUserWebAccess){
+
+          if( i.equals( test.apply(i).head.get )  ){
+
+              println( "es igual "+i+"   "+test.apply(i).head.get  );
+          }else{
+
+            println( "NO es igual "+i+"   "+test.apply(i).head.get  );
+          }
+    }*/
+
+
+
+    println(  test.apply( 10  ).tail  )
+
+
+
+
+
+
+
+
+
+
 
 
        new LZModel(sc)
@@ -118,7 +176,9 @@ case class AlgorithmParams(
 
 
 
-  /**El predictor es la lectura del TRIE LZ ***/
+
+
+   /**El predictor es la lectura del TRIE LZ ***/
 
   def predict(model: LZModel, query: Query): PredictedResult = {
 

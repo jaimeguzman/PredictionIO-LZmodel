@@ -13,17 +13,10 @@ import io.prediction.controller.Params
 import io.prediction.data.storage.Storage
 import io.prediction.data.storage.Event
 
-import io.prediction.data.store.PEventStore
-
-
-
 //SPARK
 import org.apache.spark.SparkContext
-import org.apache.spark.SparkContext._
 import org.apache.spark.rdd.RDD
 
-import org.apache.spark.mllib.linalg.Vectors
-import org.apache.spark.mllib.regression.LabeledPoint
 
 
 
@@ -54,10 +47,6 @@ class DataSource(val dsp: DataSourceParams)
 
     println("\n::::::::RATSLABS:::Recuperando Información desde el servidor de eventos.")
     val eventosDB = Storage.getPEvents()
-
-
-
-
 
 
     val eventosRDD : RDD[Event] =  eventosDB.find(
@@ -93,7 +82,8 @@ class DataSource(val dsp: DataSourceParams)
 }
 
 case class WebAccess( user: Option[Int],page: Option[String],pos:  Option[Int])
-  extends Serializable
+  extends Serializable {
+}
 
 
 class TrainingData(

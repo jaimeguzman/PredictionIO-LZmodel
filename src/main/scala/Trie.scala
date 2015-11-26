@@ -1,4 +1,6 @@
-package cl.jguzman.piocompressapp.trie
+package cl.jguzman.piocompressapp
+
+
 
 import scala.annotation.tailrec
 import scala.collection.JavaConverters._
@@ -21,13 +23,15 @@ sealed trait Trie extends Traversable[String] {
 
 };
 
-protected [trie] class TrieNode(val char:   Option[Char] = None,
+//protected [trie]
+class TrieNode(val char:   Option[Char] = None,
                              var word:   Option[String] = None,
                              var counter:Int= 0 ) extends Trie {
 
   var trieHeigth = 0
 
-  protected[trie] val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode]().asScala
+  //  protected[trie]
+val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode]().asScala
 
   override def  append(key: String) = {
 
@@ -133,7 +137,8 @@ protected [trie] class TrieNode(val char:   Option[Char] = None,
 
   }
 
-  protected[trie] def pathTo( word : String ) : Option[ListBuffer[TrieNode]] = {
+  //  protected[trie]
+  def pathTo( word : String ) : Option[ListBuffer[TrieNode]] = {
 
     def helper(buffer : ListBuffer[TrieNode], currentIndex : Int, node : TrieNode) : Option[ListBuffer[TrieNode]] = {
       if ( currentIndex == word.length) {

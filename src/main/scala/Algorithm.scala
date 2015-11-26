@@ -1,26 +1,12 @@
 package cl.jguzman.piocompressapp
 
-
-
-
 import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel}
 import org.apache.spark.SparkContext
-
-
 import org.apache.spark.mllib.tree.impurity.{Variance, Entropy, Gini, Impurity}
-import org.apache.spark.mllib.tree.configuration.Algo._
-
-import scala.util.Random
-
 import grizzled.slf4j.Logger
-
-import io.prediction.controller.PersistentModel
-
-
-
 import scala.collection.mutable.Stack
 import scala.util.control.Breaks._
-
+import scala.util.Random
 
 /***
  * Parametros que le estoy pasando al algoritmo
@@ -32,21 +18,18 @@ case class AlgorithmParams(
 
 
 
- class LZModel(
-     val sc: SparkContext,
-     val lz: TrieNode
-
-     ) extends PersistentModel[AlgorithmParams]
+class LZModel(
+      val sc: SparkContext,
+      val lz: TrieNode) extends PersistentModel[AlgorithmParams]
           with Serializable{
-
 
    @transient lazy val logger = Logger[this.type]
    def save(id: String, params: AlgorithmParams, sc: SparkContext): Boolean = {
 
-     false
+     true
 
    }
- }
+}
 
 
 
@@ -55,7 +38,6 @@ class Algorithm(val ap: AlgorithmParams)
                         LZModel,
                         Query,
                         PredictedResult] {
-
   @transient lazy val logger = Logger[this.type]
 
 
@@ -71,15 +53,7 @@ class Algorithm(val ap: AlgorithmParams)
     //System.out.print( "Exsiten muchos puntos que quiero ivnestigar con los RDD" )
 
     println("\n\n\n")
-    //val rows  = data.labeledPoints
-    // println( "la clase de data es.::::" +   data.getClass )
-    // println(data.labeledPoints.take(1).isEmpty  )
-    // println(data.labeledPoints.take(1)  )
-    // println(data.labeledPoints.count()  )
-    // println(data.labeledPoints.first()  )
-    // println(data.labeledPoints.toDebugString)
-    // println(data.labeledPoints.toString() )
-    // rows.collect().foreach(a => println(a.toString() ))
+
 
     val trie = new TrieNode()
 
@@ -144,36 +118,12 @@ class Algorithm(val ap: AlgorithmParams)
             }
 
           }
-
-
-
-
-
-
-      //println()
-
     }
 
     trie.printTree( t => print( t ) )
     println(  )
 
-
-
-
-
-
-
-
-
-
-
-
-       new LZModel(sc,trie)
-
-
-
-
-
+    new LZModel(sc,trie)
   }
 
 

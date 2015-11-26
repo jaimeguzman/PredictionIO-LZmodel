@@ -22,6 +22,7 @@ import io.prediction.controller.PersistentModel
 import cl.jguzman.piocompressapp.trie._
 
 import scala.math.Ordering.Implicits._
+import scala.util.control.Breaks._
 
 
 /***
@@ -78,7 +79,7 @@ case class AlgorithmParams(
     println(data.labeledPoints.take(1)  )
     println(data.labeledPoints.count()  )
     println(data.labeledPoints.first()  )
-//    println(data.labeledPoints.toDebugString)
+  //    println(data.labeledPoints.toDebugString)
   //  println(data.labeledPoints.toString() )
 
 
@@ -110,47 +111,82 @@ case class AlgorithmParams(
 
 
     val test = data.labeledPoints.map( x => List(x.user,x.page )  ).collect()
-    val test2 = test groupBy(_.head) toList //.sortBy( _._2.toList. )
+    //test.sortBy( _.head.get.asInstanceOf[Int] )
 
-    //test2.sortBy( a => a._1.head    )(Ordering[Any].reverse)
+    //test.sortBy( s =>  )
 
-
-
+    val test2 = test.groupBy(_.head).toList //.sortBy( _._2.toList. )
+    test2.sortBy( _._1.get.asInstanceOf[Int] )
 
 
     for( it <- test2){
       //      println(  it._1.head  );
-      print (  it._1.head +"\t "+"# "+it._2.length+"\t")
-
+      //print (  it._1.head +"\t "+"# "+it._2.length+"\t")
+           val tmpList =  List()
            for(  i <- 0 until  it._2.length ){
+             tmpList :+  it._2.apply(i).last.get.asInstanceOf[String]
+             //print(" "+ it._2.apply(i).last.get.asInstanceOf[String] ) // La idea es aqui ir agregando al mdoelo geerado
 
-                  print(" "+ it._2.apply(i).last.get )
+
+             val lz78 = {
+
+               var tmpStr = ""
+
+               // pass a function to the breakable method
+               breakable {
+                 for (i <- 0 to tmpList.size - 1) {
+
+
+                   println("X es: " + tmpList(i))
+                   if (trie.contains(tmpList(i)) == true) {
+                     print("esta en el diccionario y X es: " + tmpList(i) + "\n")
+                     Thread sleep 1000
+
+                     if ((i + 1) >= tmpList.size) {
+                       println("value de i+1 es" + (i + 1))
+                       break
+                     }
+
+                     tmpStr += tmpList(i) //+ tmpList(i + 1)
+                     println("tmpStr " + tmpStr)
+                     if (tmpStr.length > 1) trie.append(tmpStr)
+
+                     //reset tmp
+                     tmpStr = ""
+                   } else {
+                     trie.append(tmpList(i))
+                     tmpStr = ""
+                   }
+                   println()
+                 }
+
+               }
+
+             }
+             //println("::::::::::::::::::::\n\n")
+
+
 
            }
       println()
 
-
-
-
     }
 
-    val tmp: List[String] = Nil
+    trie.printTree( t => print( t ) )
+    println(  )
 
     /*
     for( i <- 0 to lastUserWebAccess){
-
           if( i.equals( test.apply(i).head.get )  ){
-
               println( "es igual "+i+"   "+test.apply(i).head.get  );
           }else{
-
             println( "NO es igual "+i+"   "+test.apply(i).head.get  );
           }
     }*/
 
 
 
-    println(  test.apply( 10  ).tail  )
+    //println(  test.apply( 10  ).tail  )
 
 
 

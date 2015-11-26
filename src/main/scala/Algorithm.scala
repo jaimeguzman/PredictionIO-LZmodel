@@ -1,6 +1,6 @@
 package cl.jguzman.piocompressapp
 
-import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel}
+import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel,PersistentModelLoader}
 import org.apache.spark.SparkContext
 import org.apache.spark.mllib.tree.impurity.{Variance, Entropy, Gini, Impurity}
 import grizzled.slf4j.Logger
@@ -19,7 +19,6 @@ case class AlgorithmParams(
 
 
 class LZModel(
-      val sc: SparkContext,
       val lz: TrieNode) extends PersistentModel[AlgorithmParams]
           with Serializable{
 
@@ -30,6 +29,23 @@ class LZModel(
 
    }
 }
+
+object lztrie{
+  val trie = new TrieNode()
+}
+
+
+object LZModel extends PersistentModelLoader[AlgorithmParams, LZModel]{
+  def apply(id: String, params: AlgorithmParams, sc: Option[SparkContext]):LZModel=
+    {
+
+      new LZModel(lztrie.trie)
+    }
+}
+
+
+
+
 
 
 
@@ -50,12 +66,10 @@ class Algorithm(val ap: AlgorithmParams)
         " y Preprator genera PreparedData correctamente.")
 
 
-    //System.out.print( "Exsiten muchos puntos que quiero ivnestigar con los RDD" )
-
     println("\n\n\n")
 
 
-    val trie = new TrieNode()
+    val trie = lztrie.trie
 
 
     //data.labeledPoints.sortBy( c => c.user.get   ,true)
@@ -123,7 +137,7 @@ class Algorithm(val ap: AlgorithmParams)
     trie.printTree( t => print( t ) )
     println(  )
 
-    new LZModel(sc,trie)
+    new LZModel(trie)
   }
 
 
@@ -138,10 +152,17 @@ class Algorithm(val ap: AlgorithmParams)
   def predict(model: LZModel, query: Query): PredictedResult = {
 
 
+     // val tester = model.lz.findByPrefix("AF")
 
+     print( "EL modelo LZ cargado es:\t" )
+/*     println( model.lz.toString() )
 
+     println(query.toString)
 
-
+      for( t <- tester){
+          println(t)
+      }
+*/
 
 
     new PredictedResult( 2.0 )

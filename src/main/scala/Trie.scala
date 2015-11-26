@@ -29,9 +29,7 @@ class TrieNode(val char:   Option[Char] = None,
                              var counter:Int= 0 ) extends Trie {
 
   var trieHeigth = 0
-
-  //  protected[trie]
-val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode]().asScala
+  val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode]().asScala
 
   override def  append(key: String) = {
 
@@ -104,8 +102,7 @@ val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode
     helper(0, this)
   }
 
-  override
-  def  remove(word : String) : Boolean = {
+  override def  remove(word : String) : Boolean = {
 
     pathTo(word) match {
       case Some(path) => {
@@ -137,7 +134,7 @@ val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode
 
   }
 
-  //  protected[trie]
+
   def pathTo( word : String ) : Option[ListBuffer[TrieNode]] = {
 
     def helper(buffer : ListBuffer[TrieNode], currentIndex : Int, node : TrieNode) : Option[ListBuffer[TrieNode]] = {

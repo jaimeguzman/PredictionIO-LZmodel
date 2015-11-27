@@ -25,7 +25,7 @@ class LZModel(
    @transient lazy val logger = Logger[this.type]
    def save(id: String, params: AlgorithmParams, sc: SparkContext): Boolean = {
 
-     true
+     false
 
    }
 }
@@ -152,17 +152,17 @@ class Algorithm(val ap: AlgorithmParams)
   def predict(model: LZModel, query: Query): PredictedResult = {
 
 
-     // val tester = model.lz.findByPrefix("AF")
+      val tester = model.lz.findByPrefix("AF")
 
+     println("la ruta hasta AF es :\t"+tester )
      print( "EL modelo LZ cargado es:\t" )
-/*     println( model.lz.toString() )
-
-     println(query.toString)
+     println( model.lz.toString() )
+     println(query )
 
       for( t <- tester){
           println(t)
       }
-*/
+
 
 
     new PredictedResult( 2.0 )

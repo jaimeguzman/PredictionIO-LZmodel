@@ -68,13 +68,13 @@ class DataSource(val dsp: DataSourceParams)
         userAccess
     }.cache()
 
-    println("::::::::RATSLABS:::webAcessRDD "+webAccessRDD.getClass )
+    //println("::::::::RATSLABS:::webAcessRDD "+webAccessRDD.getClass )
     //webAccessRDD.foreach( f => println( f ) )
 
 
 
     print("\n\n\n \n ")
-    println("\n::::::::RATSLABS::: labeledPOINTS loaded count()"+ webAccessRDD.count())
+   // println("\n::::::::RATSLABS::: labeledPOINTS loaded count()"+ webAccessRDD.count())
 
 
     new TrainingData(webAccessRDD)

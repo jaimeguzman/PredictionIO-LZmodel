@@ -21,7 +21,7 @@ $ time pio train -- --driver-memory 8G --executor-memory 4G --verbose
 time pio train -- --driver-memory 8G --executor-memory 8G --verbose
 
 # Deploy options:
-$ pio deploy -- --driver-memory 2G --executor-memory 2G --conf spark.akka.framesize=2
+pio deploy -- --driver-memory 2G --executor-memory 2G --conf spark.akka.framesize=2
 
 #For debug options
 

@@ -4,15 +4,16 @@ import io.prediction.controller.{Engine, EngineFactory}
 
 
 
-class Query(q: String) extends Serializable{
+case class Query(
+                  webaccess: String,
+                  num: Int
 
-  println( "Entro a QUERY ")
+             ) extends Serializable
 
-}
 
 
 class PredictedResult(
-  val label: Double
+  val pr: String
 
 ) extends Serializable{
 

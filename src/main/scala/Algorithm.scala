@@ -92,7 +92,7 @@ class Algorithm(val ap: AlgorithmParams)
 
 
   def train(sc: SparkContext ,   data: PreparedData): LZModel = {
-    println("\n\n\n.... Training .....\n")
+    println("\n.... Training .....\n")
 
     require(!data.labeledPoints.take(1).isEmpty,
       s"RDD[WebAccess]  PreparedData no puede estar vacio." +
@@ -174,25 +174,28 @@ class Algorithm(val ap: AlgorithmParams)
 
   def predict(model: LZModel, query: Query): PredictedResult = {
 
-      val tester = model.lz.findByPrefix("AF")
 
-     println("la ruta hasta AF es :\t"+tester )
-     print( "EL modelo LZ cargado es:\t" )
-     println( model.lz.toString() )
-     println(query )
+
+     //lztrie.trie.printTree( t => print( t ) )
+     //println()
 
 
 
-     lztrie.trie.printTree( t => print( t ) )
-     println(  )
 
-      for( t <- tester){
-          println(t)
-      }
+     val tester = lztrie.trie.findByPrefix("EJ")
+     println("la ruta hasta EJ es :\t"+ tester.seq )
 
+     for( t <- tester)    println(t)
 
 
-    new PredictedResult( 2.0 )
+     print(":::::::RATSLABS::::::::"+" La query hecha es\t ")
+
+      print( query.webaccess + "\t "+ query.num)
+
+     println("::::::RATSLABS:::::::: end query")
+
+
+     new PredictedResult( "A" )
 
   }
 

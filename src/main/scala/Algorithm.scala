@@ -121,7 +121,7 @@ class Algorithm(val ap: AlgorithmParams)
              userSession.push( it._2.apply(i).last.get.asInstanceOf[String] )
              //print(" "+ it._2.apply(i).last.get.asInstanceOf[String] ) // La idea es aqui ir agregando al mdoelo geerado
            }
-           print("\t  Lista de tamaño temporal "+ userSession.length +"\n")
+           //print("\t  Lista de tamaño temporal "+ userSession.length +"\n")
 
 
           for(  j <- 0 until  it._2.length ){
@@ -136,12 +136,12 @@ class Algorithm(val ap: AlgorithmParams)
                   //Thread sleep  500
 
                   //stop looking forward to avoid overflow
-                  if ((j + 2) >= userSession.size) {
+                  if ((j + 1) >= userSession.size) {
                     //println("\t\t\t"+"value de j+2 es\t" + (j + 2))
                     break
                   }
                   //Aca puedo ir concatennando all lo que vea en el futuro
-                  tmpStr += userSession.apply(j).concat(userSession.apply(j+1)).concat(userSession.apply(j+2)) //+ userSession(i + 1)
+                  tmpStr += userSession.apply(j).concat(userSession.apply(j+1))//.concat(userSession.apply(j+2)) //+ userSession(i + 1)
                   //println("tmpStr " + tmpStr)
                   if (tmpStr.length > 1) trie.append(tmpStr)
 
@@ -166,36 +166,37 @@ class Algorithm(val ap: AlgorithmParams)
 
 
 
-
-
-
-
-   /**El predictor es la lectura del TRIE LZ ***/
-
   def predict(model: LZModel, query: Query): PredictedResult = {
+     val lzResult =      lztrie.trie
 
 
 
-     //lztrie.trie.printTree( t => print( t ) )
-     //println()
+     //val tester = lzResult.findByPrefix("EJ")
+     //println("la ruta hasta EJ es :\t"+ tester.seq )
+     //for( t <- tester)    println(t)
+
+     //print(":::::::DEBUG::::::::"+" La query hecha es\t ")
+     //print( query.webaccess + "\t "+ query.num )
+     //println("::::::DEBUG:::::::: end query")
 
 
+     println  ("Next page....\t" )
 
 
-     val tester = lztrie.trie.findByPrefix("EJ")
-     println("la ruta hasta EJ es :\t"+ tester.seq )
+    //lzResult.predictNextPage( query.webaccess )
 
-     for( t <- tester)    println(t)
+    lzResult.predictNextPage( "A" )
+
+    // Working on it
+    //lzResult.updateCounters(c => print(c))
+    //println()
+
+    lzResult.printTree( t => print( t ) )
+    println()
+
+    new PredictedResult( "IF" )
 
 
-     print(":::::::RATSLABS::::::::"+" La query hecha es\t ")
-
-      print( query.webaccess + "\t "+ query.num)
-
-     println("::::::RATSLABS:::::::: end query")
-
-
-     new PredictedResult( "A" )
 
   }
 

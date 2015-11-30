@@ -255,17 +255,16 @@ class TrieNode(val char: Option[Char] = None,
 
     @tailrec def foreachHelper(nodes: TrieNode*): Unit = {
       if (nodes.size != 0) {
-        //println("\t"+nodes.size )
 
         var aux:Int=0
         nodes.foreach(
           node =>{
-            //println( param+"\t"+node.word +"\t"+node.counter   )
+            var chMatch = param.charAt(currentIndex).toLower
 
-            node.children.get(param.charAt(currentIndex).toLower) match {
+            node.children.get( chMatch ) match {
               case Some(child) =>{
                 println(child)
-                if (child.counter > aux ){
+                if (child.counter > aux  ){
                   aux = child.counter
                   nextSymbol = child.word.get
                 }
@@ -282,7 +281,8 @@ class TrieNode(val char: Option[Char] = None,
     //Se me va fuera de rango
     //currentIndex += 1
     foreachHelper(this)
-    println("El valor del nextSymbol es  "+ nextSymbol)
+    println(">>>>>>>>The prediction of the next page is:\t"+ nextSymbol)
+
 
     nextSymbol
   }

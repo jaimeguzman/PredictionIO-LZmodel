@@ -13,12 +13,10 @@ case class Query(
 
 
 class PredictedResult(
-  val pr: String
+  val result: String
 
 ) extends Serializable{
-
-  println( "Entro a PREDICT RESULT  ")
-
+//  println( "Entro a PREDICT RESULT  ")
 }
 
 

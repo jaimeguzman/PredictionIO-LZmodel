@@ -247,50 +247,47 @@ class TrieNode(val char: Option[Char] = None,
   * */
 
 
-  def predictNextPage( word : String ) : Option[ListBuffer[TrieNode]] = {
+  def predictNextPage[U]( param: String ): String = {
 
+    println(">>>>>>>>predictNextPage")
+    var currentIndex:Int =0
+    var nextSymbol:String = ""
 
-    def helper(buffer: ListBuffer[TrieNode],
-               currentIndex: Int,
-               node: TrieNode): Option[ListBuffer[TrieNode]] = {
+    @tailrec def foreachHelper(nodes: TrieNode*): Unit = {
+      if (nodes.size != 0) {
+        //println("\t"+nodes.size )
 
-      println("::::::\tcurrentIndex\t"+currentIndex+"\tw.length\t"+word.length  )
+        var aux:Int=0
+        nodes.foreach(
+          node =>{
+            //println( param+"\t"+node.word +"\t"+node.counter   )
 
+            node.children.get(param.charAt(currentIndex).toLower) match {
+              case Some(child) =>{
+                println(child)
+                if (child.counter > aux ){
+                  aux = child.counter
+                  nextSymbol = child.word.get
+                }
 
-
-      if( currentIndex == word.length  ) {
-
-
-        node.word.map( word => buffer += node )
-
-
-      } else {
-
-        val stackAux =  Stack[String]()
-
-
-
-
-        println(":::::::\t"+word.charAt(currentIndex).toLower+"::::::::" )
-
-
-        node.children.get(word.charAt(currentIndex).toLower) match {
-          case Some(found) => {
-
-            println("::::::"+ found.char.get+"\t"+found.word+"\t"+found.counter  )
-
-            buffer += node
-            helper(buffer, currentIndex + 1, found)
-
+              }
+              case None => None
+            }
           }
-          case None => None
-        }
+        )
+        foreachHelper(nodes.flatMap(node => node.children.values): _*)
+
       }
     }
+    //Se me va fuera de rango
+    //currentIndex += 1
+    foreachHelper(this)
+    println("El valor del nextSymbol es  "+ nextSymbol)
 
-
-    helper(new ListBuffer[TrieNode](), 0, this)
+    nextSymbol
   }
+
+
 
   /*
   *@TODO:

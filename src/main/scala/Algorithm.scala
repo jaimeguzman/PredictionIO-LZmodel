@@ -185,7 +185,7 @@ class Algorithm(val ap: AlgorithmParams)
 
     //lzResult.predictNextPage( query.webaccess )
 
-    lzResult.predictNextPage( "A" )
+
 
     // Working on it
     //lzResult.updateCounters(c => print(c))
@@ -194,7 +194,7 @@ class Algorithm(val ap: AlgorithmParams)
     lzResult.printTree( t => print( t ) )
     println()
 
-    new PredictedResult( "IF" )
+    new PredictedResult( lzResult.predictNextPage( query.webaccess ) )
 
 
 

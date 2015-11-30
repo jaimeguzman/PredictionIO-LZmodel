@@ -117,59 +117,57 @@ class Algorithm(val ap: AlgorithmParams)
      * */
 
     // Read each session from users on EventServer
-    for( it <- webaccessGrouped ){
-      val userSession =  Stack[String]()
+    for (it <- webaccessGrouped) {
+      val userSession = Stack[String]()
       val sizeOfTrieMap = it._2.length
 
-          // This is a temporal stack to
-      for(  i <- 0 until  sizeOfTrieMap ){
-             userSession.push( it._2.apply(i)
-                                  .last.get.asInstanceOf[String] )
-           }
-
-
-
-          for(  j <- 0 until  sizeOfTrieMap ){
-
-            var tmpStr = ""
-
-
-
-            breakable {
-              for (j <- 0 to userSession.size - 1) {
-
-
-                if (trie.contains(userSession(j)) == true) {
-
-                    //Thread sleep  100
-
-                    //stop looking forward to prevent index overflow
-                    if ((j + 1) >= userSession.size) {
-
-                      
-                      break
-                    }
-                    //Aca puedo ir concatennando all lo que vea en el futuro
-                    tmpStr += userSession.apply(j).concat(userSession.apply(j+1))//.concat(userSession.apply(j+2)) //+ userSession(i + 1)
+      // This is a temporal stack to
+      for (i <- 0 until sizeOfTrieMap) {
+        userSession.push(it._2.apply(i)
+          .last.get.asInstanceOf[String])
+      }
 
 
 
 
-                    if (tmpStr.length > 1) trie.append(tmpStr)
 
-                    // println(":::::::"+ trie.toString() )
+      breakable {
+        for (j <- 0 to userSession.size - 1) {
 
-                    //reset tmp
-                    tmpStr = ""
+      var pattern = userSession(j)
 
-                } else {
-                  trie.append( userSession(j) )
-                  tmpStr = ""
-                }
-                //println()
-              }
+      if( pattern!="" && trie.contains( pattern ) && (j+1) < userSession.size ){
+
+        pattern += pattern.concat(userSession(j+1) )
+
+        if( trie.contains( pattern ) ){
+          trie.children.foreach(
+
+            childs => {
+              childs._2.append(pattern)
+              pattern=""
             }
-          }
+          )
+        }else{
+          trie.append( pattern )
+          pattern= ""
+        }
+
+
+
+      }else{
+        trie.append( pattern )
+        pattern =""
+      }
+
+
+
+
+
+
+        }
+      }//breakable
+
     }
 
     trie.printTree( p => print(p))

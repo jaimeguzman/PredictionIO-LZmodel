@@ -112,7 +112,7 @@ class Algorithm(val ap: AlgorithmParams)
 
     /**
      * TEST
-     * INPUT:  “AAABABBBBBAABCCDDCBAAAA”
+     * INPUT:  “A A A B A B B B B B A A B C C D D C B A A A A”
      * OUTPUT: “A,AA,B,AB,BB,BBA,ABC,C,D,DC,BA,AAA”.
      * */
 
@@ -129,33 +129,47 @@ class Algorithm(val ap: AlgorithmParams)
 
 
 
-
+      val userSessionReverse= userSession.reverse
 
       breakable {
-        for (j <- 0 to userSession.size - 1) {
+        for (j <- 0 to userSessionReverse.size - 1) {
 
-      var pattern = userSession(j)
+          print(".")
+
+      var pattern = userSessionReverse(j)
+      //print(">>>>>\t j: "+j+"\t" )
 
       if( pattern!="" && trie.contains( pattern ) && (j+1) < userSession.size ){
 
-        pattern += pattern.concat(userSession(j+1) )
+        pattern = pattern.concat(userSessionReverse(j+1) )
+        var patternAux = pattern //this var see two symbols
+        //println(">>>>>\t MATCH con j+1 \t "+pattern )
 
-        if( trie.contains( pattern ) ){
-          trie.children.foreach(
 
-            childs => {
-              childs._2.append(pattern)
-              pattern=""
-            }
-          )
-        }else{
+        trie.append( pattern )
+        j+1
+        pattern = pattern.concat(userSessionReverse(j+1) )
+        //new patter move more
+      //  println("::::::::::::: pattern.startsWith(patternAux) \t"+pattern.startsWith(patternAux) )
+        if( !trie.contains(pattern)  && pattern.startsWith(patternAux)   ){
+      //    println("\t\t\t\t>>>>>\t MATCH con j+2 \t "+ pattern)
           trie.append( pattern )
-          pattern= ""
+          pattern =""
+          userSessionReverse(j+1)= ""
+
         }
+
+
+        pattern =""
+        userSessionReverse(j+1)= ""
+
+
 
 
 
       }else{
+        //println(">>> NO ESTA \t"+pattern )
+
         trie.append( pattern )
         pattern =""
       }
@@ -166,6 +180,7 @@ class Algorithm(val ap: AlgorithmParams)
 
 
         }
+        println()
       }//breakable
 
     }

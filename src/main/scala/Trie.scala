@@ -23,7 +23,7 @@ sealed trait Trie extends Traversable[String] {
 
 class TrieNode(val char: Option[Char] = None,
                var word: Option[String] = None,
-               var counter:Int= 0) extends Trie {
+               var counter:Int= 0) extends Trie with Serializable{
 
   var trieHeigth = 0
   val children: mutable.Map[Char, TrieNode] = new java.util.TreeMap[Char, TrieNode]().asScala
@@ -251,7 +251,7 @@ class TrieNode(val char: Option[Char] = None,
 
   def predictNextPage[U]( param: String ): String = {
 
-    println(">>>>>>>>predictNextPage")
+    //println(">>>>>>>>predictNextPage")
     var currentIndex:Int =0
     var nextSymbol:String = ""
 
@@ -259,13 +259,16 @@ class TrieNode(val char: Option[Char] = None,
       if (nodes.size != 0) {
 
         var aux:Int=0
+
         nodes.foreach(
           node =>{
+
             var chMatch = param.charAt(currentIndex).toLower
 
             node.children.get( chMatch ) match {
               case Some(child) =>{
-                println(child)
+                //println(child)
+
                 if (child.counter > aux  ){
                   aux = child.counter
                   nextSymbol = child.word.get
@@ -283,7 +286,7 @@ class TrieNode(val char: Option[Char] = None,
     //Se me va fuera de rango
     //currentIndex += 1
     foreachHelper(this)
-    println(">>>>>>>>The prediction of the next page is:\t"+ nextSymbol)
+    println(  ">>> predictTo:\t\t what's the next?   "+ param+ "\t ResultPredict: "+ nextSymbol.last.toString +"\t length:  "+ nextSymbol.length )
 
 
     nextSymbol

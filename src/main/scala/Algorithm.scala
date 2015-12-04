@@ -1,6 +1,7 @@
 package cl.jguzman.piocompressapp
 
-import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel,PersistentModelLoader}
+import io.prediction.controller.{Params, P2LAlgorithm,PersistentModel,PersistentModelLoader,EmptyEvaluationInfo}
+
 import org.apache.spark.mllib.tree.impurity.{Variance, Entropy, Gini, Impurity}
 import grizzled.slf4j.Logger
 import scala.collection.mutable.Stack
@@ -123,8 +124,7 @@ class Algorithm(val ap: AlgorithmParams)
 
       // This is a temporal stack to
       for (i <- 0 until sizeOfTrieMap) {
-        userSession.push(it._2.apply(i)
-          .last.get.asInstanceOf[String])
+        userSession.push(it._2.apply(i).last.get.asInstanceOf[String])
       }
 
 
@@ -185,8 +185,8 @@ class Algorithm(val ap: AlgorithmParams)
 
     }
 
-    trie.printTree( p => print(p))
-    println()
+    //trie.printTree( p => print(p))
+    //println()
 
 
     //create new LZ Model
@@ -205,12 +205,11 @@ class Algorithm(val ap: AlgorithmParams)
      //println("la ruta hasta EJ es :\t"+ tester.seq )
      //for( t <- tester)    println(t)
 
-     //print(":::::::DEBUG::::::::"+" La query hecha es\t ")
-     //print( query.webaccess + "\t "+ query.num )
-     //println("::::::DEBUG:::::::: end query")
+     //print(" La query hecha es\t ")
+     //print( query.webaccess.last.toString + "\t "+ query.num +"\n\n")
 
 
-     println  ("Next page....\t" )
+
 
 
     //lzResult.predictNextPage( query.webaccess )
@@ -221,14 +220,20 @@ class Algorithm(val ap: AlgorithmParams)
     //lzResult.updateCounters(c => print(c))
     //println()
 
-    lzResult.printTree( t => print( t ) )
-    println()
+    //lzResult.printTree( t => print( t ) )
+    //println()
 
     new PredictedResult( lzResult.predictNextPage( query.webaccess ) )
 
 
 
   }
+
+
+
+
+
+
 
 
 

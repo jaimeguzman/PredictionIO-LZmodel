@@ -115,81 +115,151 @@ class Algorithm(val ap: AlgorithmParams)
      * TEST
      * INPUT:  “A A A B A B B B B B A A B C C D D C B A A A A”
      * OUTPUT: “A,AA,B,AB,BB,BBA,ABC,C,D,DC,BA,AAA”.
+     *
+     * 	A	AA	AB	ABB	B	BB	AAB	C	CD	D	CB	AAA
+
      * */
+
+    //For checking if the trie is constructed well
+
+
+    /*  trie.append("A" )
+      trie.append("AA" )
+      trie.append("B" )
+      trie.append("AB" )
+      trie.append("BB" )
+      trie.append("BBA" )
+      trie.append("ABC" )
+      trie.append("C" )
+      trie.append("D" )
+      trie.append("D" )
+      trie.append("DC" )
+      trie.append("BA" )
+      trie.append("AAA" )
+     */
+
+
+    // this is for iterate all the session of all the users
+    for( wg   <- webaccessGrouped  ){
+
+      val user_session = Stack[String]()
+      val num_pages    = wg._2.length
+
+
+      val dictionary = Stack[String]()
+
+
+      var phrase:String = ""
+
+      // fill data
+//      println("\t")
+
+      for (i <- 0 until num_pages ) {
+        val c = wg._2.apply(i).last.get.asInstanceOf[String]
+        user_session.push(c)
+        phrase += c
+      }
+      //println()
+
+
+
+
+      val phraseCharArray = phrase.toCharArray
+
+      if( phrase.length >0 ) dictionary.push( phraseCharArray(0).toString  )
+
+
+
+
+      var w:String =""
+
+      for( x <- 0 until phraseCharArray.length   ){
+
+        val ch = phraseCharArray(x)
+        w = w.concat(ch.toString)
+
+        if( ! dictionary.contains( w )  ){
+
+        //  println( "if:"+ ch )
+          dictionary.push(  w  )
+
+          w=""
+
+        }
+
+      }
+
+      for(   r <- dictionary.reverse   )  trie.append(r) //print ("\t"+ r )
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
 
     // Read each session from users on EventServer
     for (it <- webaccessGrouped) {
+
+
       val userSession = Stack[String]()
       val sizeOfTrieMap = it._2.length
 
       // This is a temporal stack to
-      for (i <- 0 until sizeOfTrieMap) {
-        userSession.push(it._2.apply(i).last.get.asInstanceOf[String])
-      }
-
-
+      for (i <- 0 until sizeOfTrieMap) userSession.push(it._2.apply(i).last.get.asInstanceOf[String])
 
       val userSessionReverse= userSession.reverse
 
+
       breakable {
-        for (j <- 0 to userSessionReverse.size - 1) {
+        for( j <- 0 to userSessionReverse.size - 1) {
+          // print(".")
+          var pattern = userSessionReverse(j)
 
-          print(".")
+          if( pattern!="" && trie.contains( pattern ) && (j+1) < userSession.size ){
 
-      var pattern = userSessionReverse(j)
-      //print(">>>>>\t j: "+j+"\t" )
+              pattern = pattern.concat(userSessionReverse(j+1) )
+              var patternAux = pattern //this var see two symbols
+              trie.append( pattern )
 
-      if( pattern!="" && trie.contains( pattern ) && (j+1) < userSession.size ){
+              /*
+                j+1
+                pattern = pattern.concat(userSessionReverse(j+1) )
+                //new patter move more
+                //  println("::::::::::::: pattern.startsWith(patternAux) \t"+pattern.startsWith(patternAux) )
+                if( !trie.contains(pattern)  && pattern.startsWith(patternAux)   ){
+                //    println("\t\t\t\t>>>>>\t MATCH con j+2 \t "+ pattern)
+                  trie.append( pattern )
+                  pattern =""
+                  userSessionReverse(j+1)= ""
 
-        pattern = pattern.concat(userSessionReverse(j+1) )
-        var patternAux = pattern //this var see two symbols
-        //println(">>>>>\t MATCH con j+1 \t "+pattern )
+              }*/
+              pattern =""
+              userSessionReverse(j+1)= ""
 
-
-        trie.append( pattern )
-        j+1
-        pattern = pattern.concat(userSessionReverse(j+1) )
-        //new patter move more
-      //  println("::::::::::::: pattern.startsWith(patternAux) \t"+pattern.startsWith(patternAux) )
-        if( !trie.contains(pattern)  && pattern.startsWith(patternAux)   ){
-      //    println("\t\t\t\t>>>>>\t MATCH con j+2 \t "+ pattern)
-          trie.append( pattern )
-          pattern =""
-          userSessionReverse(j+1)= ""
-
+          }else{
+              trie.append( pattern )
+              pattern =""
+          }
         }
-
-
-        pattern =""
-        userSessionReverse(j+1)= ""
-
-
-
-
-
-      }else{
-        //println(">>> NO ESTA \t"+pattern )
-
-        trie.append( pattern )
-        pattern =""
       }
-
-
-
-
-
-
-        }
-        println()
-      }//breakable
-
     }
-
-    //trie.printTree( p => print(p))
-    //println()
+    */
 
 
-    //create new LZ Model
+    trie.printTree( p => print(p))
+     println()
     new LZModel(trie)
   }
 

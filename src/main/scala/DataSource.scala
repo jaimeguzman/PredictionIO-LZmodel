@@ -164,7 +164,7 @@ class DataSource(val dsp: DataSourceParams)
                 ultima    = tmp.charAt(tmp.length-1 ).toString
               }
 
-              println(  ">>> session:\t"+ tmp+ "\t penultimate page:  "+ penultima +"\t last page:  \t"+ ultima )
+              println(  ">>> session:\t\t\t penultimate page:  "+ penultima +"\t last page:  \t"+ ultima+"\tsess: "+tmp)
               tmp = ""
 
 

@@ -255,10 +255,27 @@ class TrieNode(val char: Option[Char] = None,
     var currentIndex:Int =0
     var nextSymbol:String = ""
 
-    @tailrec def foreachHelper(nodes: TrieNode*): Unit = {
+    val test = findByPrefix(param)
+
+    for( t <- test ) println( t )
+
+
+    /**
+     * - Si es nodo intermedio y tiene un hijo, es el resultado
+     * - Si un nodo hoja random entre el alfabeto
+     * -
+     * */
+
+
+
+
+    @tailrec def predictHelper(nodes: TrieNode*): Unit = {
       if (nodes.size != 0) {
 
-        var aux:Int=0
+
+
+
+        var aux:Int = 0
 
         nodes.foreach(
           node =>{
@@ -267,7 +284,7 @@ class TrieNode(val char: Option[Char] = None,
 
             node.children.get( chMatch ) match {
               case Some(child) =>{
-                //println(child)
+                println(child +"nodesize "+nodes.size )
 
                 if (child.counter > aux  ){
                   aux = child.counter
@@ -279,14 +296,14 @@ class TrieNode(val char: Option[Char] = None,
             }
           }
         )
-        foreachHelper(nodes.flatMap(node => node.children.values): _*)
+        predictHelper(nodes.flatMap(node => node.children.values): _*)
 
       }
     }
     //Se me va fuera de rango
     //currentIndex += 1
-    foreachHelper(this)
-    println(  ">>> predictTo:\t\t what's the next?   "+ param+ "\t ResultPredict: "+ nextSymbol.last.toString +"\t length:  "+ nextSymbol.length )
+    predictHelper(this)
+    println(  ">>> predictTo:\t\t what's the next?   "+ param+ "\t ResultPredict: "+ nextSymbol.last.toString +"\t length:  "+ nextSymbol.length+ " of "+nextSymbol )
 
 
     nextSymbol

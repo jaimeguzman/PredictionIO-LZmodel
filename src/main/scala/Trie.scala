@@ -7,6 +7,8 @@ import scala.collection.JavaConverters._
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.Stack
+import scala.util.Random
+
 
 object Trie {
   def apply() : Trie = new TrieNode()
@@ -251,29 +253,85 @@ class TrieNode(val char: Option[Char] = None,
 
   def predictNextPage[U]( param: String ): String = {
 
+
     //println(">>>>>>>>predictNextPage")
-    var currentIndex:Int =0
-    var nextSymbol:String = ""
+    var currentIndex:Int    = 0
+    var nextSymbol:String   = ""
+    val resultFindBP        = findByPrefix(param)
+    val random              = new Random
+    var countPosibility:Int = 0
+    val stack               = Stack[String]()
+    val alphabet            = Stack[String]()
 
-    val test = findByPrefix(param)
 
-    for( t <- test ) println( t )
+
+    alphabet.push("A","B","C","D","E","F","G","H","I","J",
+      "K","L","M","N","O","P","Q");
+      //,"R","S","T", "U","V","W","X","Y","Z")
+
+    for( t <- 0 until  resultFindBP.length ){
+
+      // Si es nodo hoja o nodo intermedio con un solo jhijo
+      if( t > 0  ) {
+        if( param.length > 1 ) {
+
+          countPosibility+=1
+          println( "t \t\t"+ resultFindBP(t) )
+          println(  "t.stripPrefix(param) "+ resultFindBP(t).stripPrefix(param) )
+          stack.push(resultFindBP(t).stripPrefix(param))
+          //nextSymbol = resultFindBP(t).stripPrefix(param)
+          nextSymbol = stack(random.nextInt(stack.length))
+
+        }else{
+
+          println(">>else" )
+          // Aqui cuando es un query de length 1 busca el prefijo
+         nextSymbol = resultFindBP(t).stripPrefix( param )
+
+
+        }
+
+      }
+
+
+
+
+    }
+
+    // Caso de nodo hoja sin hijo y sin simbolo siguiente
+    if( resultFindBP=="" || nextSymbol==""  ){
+      nextSymbol = alphabet(random.nextInt(alphabet.length))
+    }
+
+
+
+    if( stack.length  > 0 ){
+      println( "stack.length "+ stack.length  )
+      println( "random number "+ random.nextInt(stack.length)  )
+      println( "random result "+ stack(random.nextInt(stack.length)   ) )
+    }
+
+
+    stack.clear()
+
+
 
 
     /**
-     * - Si es nodo intermedio y tiene un hijo, es el resultado
-     * - Si un nodo hoja random entre el alfabeto
+     - Interesantemente si el length que retonrar finbyprefix es 2
+      significa que el n-1 es la predicción
+
+      - Pero si es 3 significa que por lo menos hay dos nodos hijos que puedes ser la predicción
      * -
      * */
 
 
 
 
+
+
     @tailrec def predictHelper(nodes: TrieNode*): Unit = {
       if (nodes.size != 0) {
-
-
-
 
         var aux:Int = 0
 
@@ -284,11 +342,11 @@ class TrieNode(val char: Option[Char] = None,
 
             node.children.get( chMatch ) match {
               case Some(child) =>{
-                println(child +"nodesize "+nodes.size )
+                //println(child +"nodesize "+nodes.size )
 
                 if (child.counter > aux  ){
                   aux = child.counter
-                  nextSymbol = child.word.get
+                  //nextSymbol = child.word.get
                 }
 
               }
@@ -303,8 +361,8 @@ class TrieNode(val char: Option[Char] = None,
     //Se me va fuera de rango
     //currentIndex += 1
     predictHelper(this)
-    println(  ">>> predictTo:\t\t what's the next?   "+ param+ "\t ResultPredict: "+ nextSymbol.last.toString +"\t length:  "+ nextSymbol.length+ " of "+nextSymbol )
-
+    //println(  ">>> predictTo:\t\t what's the next?   "+ param+ "\t ResultPredict: "+ nextSymbol.last.toString +"\t length:  "+ nextSymbol.length+ " of "+nextSymbol )
+    println(  ">>> predictTo:\t\t what's the next?   "+ param+ "\t ResultPredict: "+ nextSymbol )
 
     nextSymbol
   }

@@ -131,8 +131,8 @@ class DataSource(val dsp: DataSourceParams)
 
 
     /**Folds Limits**/
-    val foldTraining: Int = 50
-    val foldTesting:  Int = 50
+    val foldTraining: Int = 10
+    val foldTesting:  Int = 10
 
     /**Training**/
     val trainingSequences     = webAccessRDD.filter( _.user.get < foldTraining    )
@@ -162,8 +162,8 @@ class DataSource(val dsp: DataSourceParams)
                 ultima    = tmp.charAt(tmp.length-1 ).toString
               }
 
-              println(  "DATASOURCE >>>penultimate page= "+ penultima + "  last page= "+ ultima
-                                    +"  session= "+tmp)/**/
+              // println(  "DATASOURCE >>>penultimate page= "+ penultima + "  last page= "+ ultima
+              //                       +"  session= "+tmp)
               tmp = ""
 
 

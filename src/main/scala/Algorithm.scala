@@ -234,8 +234,8 @@ class Algorithm(val ap: AlgorithmParams)
     */
 
 
-    //trie.printTree( p => print(p))
-     //println()
+   // lzResult.printTree( t => print( t ) ); println();
+
     new LZModel(trie)
   }
 
@@ -245,7 +245,7 @@ class Algorithm(val ap: AlgorithmParams)
   def predict(model: LZModel, query: Query): PredictedResult = {
     val lzResult =      lztrie.trie
 
-    lzResult.printTree( t => print( t ) ); println();
+
 
     new PredictedResult( lzResult.predictNextPage( query.webaccess ) )
 

@@ -32,7 +32,7 @@ templates/MLlib-Decision-TreesBONITO/
 #PIO
 pio.log
 data/*.txt
-data/*.seq
+#data/*.seq
 data/*.zip
 manifest.json
 pio.log

@@ -39,13 +39,13 @@ case class Accuracy() extends
 
 
 
-/*
+
     print("\ncalculate >>> "+"\tpagina predecida= "+predicted.result+ "\t pagina correcta= "  +actual.actualRes )
     print("\tAccurracy = "+ ((value2/counter)*100).round + " % " )
     print("\tValue= "+value2.round )
     print("\tError= "+ error.round )
     print("\t# pruebas= "+counter.round)
-*/
+
 
     value
   }

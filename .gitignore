@@ -22,7 +22,7 @@ templates/MLlib-Decision-TreesBONITO/
 # Scala-IDE specific
 .scala_dependencies
 .worksheet
-
+msnbc990928*
 
 
 
@@ -31,9 +31,9 @@ templates/MLlib-Decision-TreesBONITO/
 
 #PIO
 pio.log
-data/*.txt
+#data/*.txt
 #data/*.seq
-data/*.zip
+#data/*.zip
 manifest.json
 pio.log
 target/
@@ -48,12 +48,11 @@ test/
 
 ### DATA 
 letterSequences
-*.seq
+#*.seq
 *.zip
 
 
 # ML_PIO
-
 pio-runtime-jars/
 src/main/scala/Engine.scala~
 src/main/scala/NaiveBayesAlgorithm.scala~

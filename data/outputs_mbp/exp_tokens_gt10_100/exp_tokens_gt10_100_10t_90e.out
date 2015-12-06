@@ -1,0 +1,961 @@
+[38;5;82m...This is PIO [38;5;198mCompressPredict Engine Evaluator
+[34mPLEASE WAIT...\e[39m
+
+
+First Command Execute [33m PIO BUILD
+[31mBUILDING PROCESS.... please wait... [0m [39m
+
+
+[INFO] [Console$] Using existing engine manifest JSON at /Users/jguzman/MLcompressIO/PredictionIO-CompressApp/manifest.json
+[INFO] [Console$] Using command '/Users/jguzman/PredictionIO/sbt/sbt' at the current working directory to build.
+[INFO] [Console$] If the path above is incorrect, this process will fail.
+[INFO] [Console$] Uber JAR disabled. Making sure lib/pio-assembly-0.9.4.jar is absent.
+[INFO] [Console$] Going to run: /Users/jguzman/PredictionIO/sbt/sbt  package assemblyPackageDependency
+[INFO] [Console$] Build finished successfully.
+[INFO] [Console$] Looking for an engine...
+[INFO] [Console$] Found pio-lempelziv-assembly-0.1-SNAPSHOT-deps.jar
+[INFO] [Console$] Found pio-lempelziv_2.10-0.1-SNAPSHOT.jar
+[INFO] [RegisterEngine$] Registering engine cIMWvcMf1VqpY1pYT7iFypkmJXsrnpsi d9e8da573674edf6ae0dc7f6db90d5d31758e1f1
+[INFO] [Console$] Your engine is ready for training.
+
+
+Second Command Execute [33m PIO EVAL
+[31m EVALUATION PROCESS.... please be patience.[39m
+
+
+[INFO] [Console$] Using existing engine manifest JSON at /Users/jguzman/MLcompressIO/PredictionIO-CompressApp/manifest.json
+[INFO] [Runner$] Submission command: /Users/jguzman/PredictionIO/vendors/spark-1.4.1/bin/spark-submit --driver-memory 8G --class io.prediction.workflow.CreateWorkflow --jars file:/Users/jguzman/MLcompressIO/PredictionIO-CompressApp/target/scala-2.10/pio-lempelziv-assembly-0.1-SNAPSHOT-deps.jar,file:/Users/jguzman/MLcompressIO/PredictionIO-CompressApp/target/scala-2.10/pio-lempelziv_2.10-0.1-SNAPSHOT.jar --files file:/Users/jguzman/PredictionIO/conf/log4j.properties,file:/Users/jguzman/PredictionIO/vendors/hbase-1.0.0/conf/hbase-site.xml --driver-class-path /Users/jguzman/PredictionIO/conf:/Users/jguzman/PredictionIO/vendors/hbase-1.0.0/conf file:/Users/jguzman/PredictionIO/lib/pio-assembly-0.9.4.jar --engine-id cIMWvcMf1VqpY1pYT7iFypkmJXsrnpsi --engine-version d9e8da573674edf6ae0dc7f6db90d5d31758e1f1 --engine-variant file:/Users/jguzman/MLcompressIO/PredictionIO-CompressApp/engine.json --verbosity 0 --evaluation-class cl.jguzman.piocompressapp.AccuracyEvaluation --engine-params-generator-class cl.jguzman.piocompressapp.EngineParamsList --json-extractor Both --env PIO_STORAGE_SOURCES_HBASE_TYPE=hbase,PIO_ENV_LOADED=1,PIO_STORAGE_REPOSITORIES_METADATA_NAME=pio_meta,PIO_FS_BASEDIR=/Users/jguzman/.pio_store,PIO_STORAGE_SOURCES_HBASE_HOME=/Users/jguzman/PredictionIO/vendors/hbase-1.0.0,PIO_HOME=/Users/jguzman/PredictionIO,PIO_FS_ENGINESDIR=/Users/jguzman/.pio_store/engines,PIO_STORAGE_SOURCES_LOCALFS_PATH=/Users/jguzman/.pio_store/models,PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch,PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH,PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS,PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=pio_event,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOME=/Users/jguzman/PredictionIO/vendors/elasticsearch-1.4.4,PIO_FS_TMPDIR=/Users/jguzman/.pio_store/tmp,PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_model,PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=HBASE,PIO_CONF_DIR=/Users/jguzman/PredictionIO/conf,PIO_STORAGE_SOURCES_LOCALFS_TYPE=localfs
+			>>>>Acurracy check 	
+[INFO] [CoreWorkflow$] runEvaluation started
+[INFO] [Remoting] Starting remoting
+[INFO] [Remoting] Remoting started; listening on addresses :[akka.tcp://sparkDriver@192.168.1.34:52097]
+[INFO] [CoreWorkflow$] Starting evaluation instance ID: AVF46HJMGxqBLrEcr4jS
+[INFO] [Engine$] DataSource: cl.jguzman.piocompressapp.DataSource@b5ac0c1
+[INFO] [Engine$] Preparator: cl.jguzman.piocompressapp.Preparator@55846997
+[INFO] [Engine$] AlgorithmList: List(cl.jguzman.piocompressapp.Algorithm@168142da)
+[INFO] [Engine$] Serving: cl.jguzman.piocompressapp.Serving@36f6e521
+		::::::::::readEval::::::::::::		
+[WARN] [TableInputFormatBase] Cannot resolve the host name for /192.168.1.34 because of javax.naming.NameNotFoundException: DNS name not found [response code 3]; remaining name '34.1.168.192.in-addr.arpa'
+
+calculate >>> 	pagina predecida= K	 pagina correcta= Q
+calculate >>> 	pagina predecida= K	 pagina correcta= Q
+calculate >>> 	pagina predecida= K	 pagina correcta= Q	Accurracy = 0 % 
+calculate >>> 	pagina predecida= K	 pagina correcta= Q	Accurracy = 0 % 	Value= 0	Error= 1	# pruebas= 1	Accurracy = 0 % 	Value= 0	Error= 1	# pruebas= 1
+calculate >>> 	pagina predecida= F	 pagina correcta= F
+calculate >>> 	pagina predecida= H	 pagina correcta= F	Value= 0	Error= 1	Accurracy = 0 % 	Value= 0	Error= 1	# pruebas= 1	# pruebas= 1
+calculate >>> 	pagina predecida= F	 pagina correcta= F	Accurracy = 50 % 
+calculate >>> 	pagina predecida= H	 pagina correcta= F	Accurracy = 0 % 	Value= 0	Error= 2	# pruebas= 2	Accurracy = 50 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 2	# pruebas= 2	Value= 1
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 3	# pruebas= 3	Error= 1
+calculate >>> 	pagina predecida= 	 pagina correcta= E	# pruebas= 2	Accurracy = 0 % 	Value= 0	Value= 1	Error= 1	# pruebas= 2
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 33 % 	Value= 1	Error= 2	# pruebas= 3	Error= 3
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 25 % 	Value= 1	Error= 3	# pruebas= 4	Accurracy = 0 % 
+calculate >>> 	pagina predecida= F	 pagina correcta= G	# pruebas= 3
+calculate >>> 	pagina predecida= L	 pagina correcta= A
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 20 % 	Value= 0	Error= 4	# pruebas= 4	Value= 1
+calculate >>> 	pagina predecida= F	 pagina correcta= G	Accurracy = 0 % 	Accurracy = 33 % 	Value= 1	Error= 2	# pruebas= 3	Value= 0	Accurracy = 0 % 	Value= 0	Error= 5	# pruebas= 5	Error= 4	# pruebas= 5
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 	Value= 0	Error= 6	# pruebas= 6	Error= 4
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 25 % 	Accurracy = 0 % 	Value= 0	Error= 7	# pruebas= 7	# pruebas= 4
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 1	Error= 5	# pruebas= 6	Accurracy = 0 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= F	 pagina correcta= G	Accurracy = 0 % 	Value= 1	Error= 3	# pruebas= 4	Value= 0	Error= 5	# pruebas= 5	Accurracy = 14 % 	Value= 1	Value= 0	Error= 8	# pruebas= 8
+calculate >>> 	pagina predecida= G	 pagina correcta= C	Accurracy = 0 % 	Value= 0	Error= 9	# pruebas= 9	Error= 6
+calculate >>> 	pagina predecida= N	 pagina correcta= A	# pruebas= 7
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 	Value= 0	Error= 6
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 13 % 	Value= 1	Error= 7	# pruebas= 8
+calculate >>> 	pagina predecida= F	 pagina correcta= G
+calculate >>> 	pagina predecida= O	 pagina correcta= C	Accurracy = 20 % 	Value= 1	Error= 4	# pruebas= 5	Accurracy = 11 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 1	Error= 5	# pruebas= 6	# pruebas= 6	Accurracy = 0 % 	Value= 0	Error= 10	# pruebas= 10
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 14 % 	Value= 1	Error= 6	# pruebas= 7	Value= 1	Error= 8	# pruebas= 9
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 13 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 11	# pruebas= 11	Accurracy = 0 % 	Value= 0	Error= 7	# pruebas= 7	Accurracy = 10 % 	Value= 1	Error= 9	# pruebas= 10	Value= 1
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 9 % 	Value= 1
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 	Value= 0	Error= 8	# pruebas= 8
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 0 % 	Error= 10	# pruebas= 11	Error= 7	# pruebas= 8
+calculate >>> 	pagina predecida= 	 pagina correcta= I
+calculate >>> 	pagina predecida= H	 pagina correcta= C	Value= 0
+calculate >>> 	pagina predecida= F	 pagina correcta= C	Accurracy = 0 % 	Value= 0	Error= 9	# pruebas= 9	Error= 12
+calculate >>> 	pagina predecida= N	 pagina correcta= A	# pruebas= 12	Accurracy = 11 % 	Value= 1	Error= 8	Accurracy = 8 % 	Value= 1	Error= 11	# pruebas= 12
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 13	# pruebas= 13	# pruebas= 9	Accurracy = 0 % 	Value= 0
+calculate >>> 	pagina predecida= N	 pagina correcta= A	Accurracy = 10 % 	Value= 1	Error= 9	# pruebas= 10
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 9 % 	Value= 1	Error= 10	# pruebas= 11
+calculate >>> 	pagina predecida= N	 pagina correcta= F
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 0 % 	Accurracy = 8 % 
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 8 % 	Value= 1	Error= 12	# pruebas= 13	Value= 1	Error= 11	# pruebas= 12	Value= 0
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Error= 10	# pruebas= 10	Accurracy = 8 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Error= 14	# pruebas= 14
+calculate >>> 	pagina predecida= F	 pagina correcta= D	Accurracy = 0 % 	Value= 0
+calculate >>> 	pagina predecida= N	 pagina correcta= F	Accurracy = 7 % 	Error= 15	# pruebas= 15	Accurracy = 0 % 	Value= 0	Value= 1	Error= 12	Error= 11	# pruebas= 11
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 16	Value= 1	Error= 13	# pruebas= 14	# pruebas= 16
+calculate >>> 	pagina predecida= F	 pagina correcta= D	Accurracy = 7 % 	Value= 1	Error= 14	# pruebas= 15
+calculate >>> 	pagina predecida= 	 pagina correcta= I
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 6 % 	Value= 1	Error= 15	# pruebas= 16	# pruebas= 13
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 12 % 	Value= 2	Error= 15
+calculate >>> 	pagina predecida= N	 pagina correcta= F	Accurracy = 0 % 
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 6 % 	Value= 0	Error= 12	# pruebas= 12	Accurracy = 7 % 
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 13	# pruebas= 13	# pruebas= 17
+calculate >>> 	pagina predecida= N	 pagina correcta= F	Accurracy = 0 % 	Value= 0	Error= 14
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 11 % 	Value= 2	Error= 16	# pruebas= 18	Value= 1	Error= 13	# pruebas= 14
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 11 % 	Value= 2
+calculate >>> 	pagina predecida= F	 pagina correcta= D	Value= 1	Error= 16	# pruebas= 17	Accurracy = 7 % 	Value= 1	Error= 14	# pruebas= 15	Error= 17	# pruebas= 19
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 6 % 	Value= 1	Error= 15	# pruebas= 16
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 10 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= H	# pruebas= 14	Accurracy = 6 % 
+calculate >>> 	pagina predecida= F	 pagina correcta= D	Value= 2	Error= 18	# pruebas= 20
+calculate >>> 	pagina predecida= H	 pagina correcta= H
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 11 % 	Value= 2	Accurracy = 10 % 	Value= 2	Error= 19	# pruebas= 21	Accurracy = 0 % 	Value= 0	Error= 15	# pruebas= 15	Value= 1	Error= 16	# pruebas= 17
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 16	# pruebas= 16
+calculate >>> 	pagina predecida= L	 pagina correcta= A
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 0 % 	Value= 0	Error= 16	# pruebas= 18	Error= 17
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 9 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 6 % 	Value= 1	Error= 17	# pruebas= 18	Value= 2	Error= 20	# pruebas= 22	Accurracy = 11 % 	Value= 2	Error= 17	# pruebas= 17	# pruebas= 19
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 0 % 	Value= 0	Error= 18	# pruebas= 18
+calculate >>> 	pagina predecida= 	 pagina correcta= E
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 5 % 	Value= 1	Error= 18	# pruebas= 19
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 9 % 	Value= 2	Error= 21	# pruebas= 23
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 10 % 	Value= 2	Accurracy = 5 % 	Value= 1	Error= 19	# pruebas= 20
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 0 % 	Value= 0	Error= 18	# pruebas= 20
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 8 % 	Value= 2	Error= 22	# pruebas= 24	Error= 19
+calculate >>> 	pagina predecida= N	 pagina correcta= N
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 5 % 	Value= 1	Error= 20	# pruebas= 21	Accurracy = 12 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= A	# pruebas= 19	Accurracy = 10 % 	Value= 2
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 5 % 	Value= 1	Value= 3	Error= 22	# pruebas= 25	Error= 21
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 20	# pruebas= 20	Error= 19	# pruebas= 21
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 12 % 	Value= 3	Error= 23	# pruebas= 26	# pruebas= 22
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 11 % 	Value= 3	Error= 24	# pruebas= 27
+calculate >>> 	pagina predecida= L	 pagina correcta= A
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 9 % 	Value= 2	Error= 20	# pruebas= 22	Accurracy = 0 % 	Value= 0	Accurracy = 11 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 4 % 	Value= 1	Error= 22	Value= 3	# pruebas= 23
+calculate >>> 	pagina predecida= 	 pagina correcta= E
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Error= 21	# pruebas= 21	Accurracy = 4 % 	Value= 1	Error= 23
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 9 % 	Value= 2	Error= 21	# pruebas= 23	Error= 25	# pruebas= 28	Accurracy = 0 % 	Value= 0	Error= 22	# pruebas= 22	# pruebas= 24
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 
+calculate >>> 	pagina predecida= H	 pagina correcta= A	Accurracy = 10 % 	Value= 3	Error= 26	# pruebas= 29
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= 	 pagina correcta= B	Accurracy = 10 % 	Value= 3	Error= 27	# pruebas= 30	Value= 0
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Error= 23	# pruebas= 23
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 8 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 0 % 	Value= 0	Accurracy = 13 % 	Value= 4	Error= 27	# pruebas= 31	Accurracy = 8 % 	Value= 2
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 13 % 	Value= 4	Error= 28	# pruebas= 32	Error= 24
+calculate >>> 	pagina predecida= L	 pagina correcta= B	# pruebas= 24	Value= 2	Error= 23	# pruebas= 25
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 4 % 	Accurracy = 12 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Error= 22	# pruebas= 24	Accurracy = 8 % 	Value= 2	Value= 4	Value= 1	Error= 24	Error= 29	# pruebas= 33	Error= 24	# pruebas= 26
+calculate >>> 	pagina predecida= B	 pagina correcta= B	Accurracy = 15 % 
+calculate >>> 	pagina predecida= H	 pagina correcta= H
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 12 % 	Value= 3	Error= 22	Accurracy = 11 % 	Value= 5	Error= 29	# pruebas= 34	# pruebas= 25
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 17 % 	Value= 6	Error= 29	# pruebas= 35	Value= 3	Error= 24	# pruebas= 27	# pruebas= 25
+calculate >>> 	pagina predecida= E	 pagina correcta= A
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 12 % 	Value= 3	Error= 23	# pruebas= 26
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 17 % 	Accurracy = 15 % 	Value= 6	Value= 4	Error= 23	# pruebas= 27
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 4 % 
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Error= 30	# pruebas= 36	Accurracy = 11 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 18 % 	Value= 5	Error= 23	# pruebas= 28	Value= 1	Error= 25
+calculate >>> 	pagina predecida= H	 pagina correcta= A	# pruebas= 26	Accurracy = 16 % 	Value= 6	Error= 31	# pruebas= 37
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 7 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= K	Accurracy = 16 % 	Value= 6	Error= 32	# pruebas= 38	Value= 3	Error= 25
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Value= 2	Error= 25	# pruebas= 27
+calculate >>> 	pagina predecida= K	 pagina correcta= Q	Accurracy = 17 % 	Value= 5	Error= 24
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 7 % 	Value= 2	Error= 26	# pruebas= 28	Accurracy = 0 % 	Value= 0	Error= 1	Accurracy = 15 % 	Value= 6	Error= 33	# pruebas= 39	# pruebas= 28
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 18 % 	Value= 7	Error= 33	# pruebas= 40
+calculate >>> 	pagina predecida= O	 pagina correcta= A	Accurracy = 10 % 	Value= 3
+calculate >>> 	pagina predecida= H	 pagina correcta= B	# pruebas= 1
+calculate >>> 	pagina predecida= O	 pagina correcta= A	Accurracy = 7 % 	Value= 2	Error= 27
+calculate >>> 	pagina predecida= G	 pagina correcta= F	# pruebas= 29	Accurracy = 0 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= B	# pruebas= 29	Accurracy = 17 % 	Value= 7	Error= 34	# pruebas= 41	Error= 26	# pruebas= 29
+calculate >>> 	pagina predecida= 	 pagina correcta= B	Accurracy = 7 % 	Value= 2	Error= 28
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 17 % 	Value= 7	Error= 35	# pruebas= 42	Accurracy = 17 % 	Value= 5	Error= 25	# pruebas= 30	Value= 0	Error= 2
+calculate >>> 	pagina predecida= B	 pagina correcta= L
+calculate >>> 	pagina predecida= F	 pagina correcta= J	Accurracy = 16 % 	# pruebas= 30
+calculate >>> 	pagina predecida= 	 pagina correcta= B
+calculate >>> 	pagina predecida= B	 pagina correcta= L	Value= 7	Accurracy = 16 % 	Value= 5	Error= 26	# pruebas= 31	# pruebas= 2
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 16 % 	Error= 36	Value= 5	# pruebas= 43	Error= 27	# pruebas= 32	Accurracy = 6 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Value= 2	Accurracy = 15 % 	Value= 5	Error= 28	# pruebas= 33	Accurracy = 10 % 	Value= 3
+calculate >>> 	pagina predecida= B	 pagina correcta= B	Error= 29	Accurracy = 18 % 	# pruebas= 31
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 8
+calculate >>> 	pagina predecida= E	 pagina correcta= A
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 3	# pruebas= 3	Accurracy = 6 % 	Value= 2	Error= 30
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Error= 36	# pruebas= 44	Value= 6	Error= 28
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 18 % 	Value= 8	Error= 37	# pruebas= 45	Error= 27
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 8	Error= 38	# pruebas= 46	# pruebas= 34
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 17 % 	Value= 8	Error= 39	# pruebas= 47
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 17 % 	Value= 8	Error= 40	# pruebas= 48	Accurracy = 0 % 	Value= 0	Error= 4	# pruebas= 4	# pruebas= 32
+calculate >>> 	pagina predecida= F	 pagina correcta= G	Accurracy = 0 % 	Value= 0	Error= 5	# pruebas= 5
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 16 % 	Accurracy = 20 % 	Value= 8	Error= 41	# pruebas= 49	# pruebas= 30
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 16 % 	Value= 8	Error= 42	# pruebas= 50	Value= 7	Value= 0
+calculate >>> 	pagina predecida= F	 pagina correcta= F	Accurracy = 18 % 	Value= 9	Error= 42	# pruebas= 51	Accurracy = 6 % 	Value= 2	Error= 31
+calculate >>> 	pagina predecida= E	 pagina correcta= K	Error= 6	# pruebas= 6	Error= 28	# pruebas= 35
+calculate >>> 	pagina predecida= E	 pagina correcta= L	Accurracy = 10 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 0 % 	Value= 0	Accurracy = 17 % 	Value= 9	# pruebas= 33	Error= 43	# pruebas= 52
+calculate >>> 	pagina predecida= E	 pagina correcta= B	Accurracy = 6 % 	Value= 2	Error= 32	# pruebas= 34
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 17 % 	Value= 9	Error= 44
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 9 % 	Value= 3	Error= 32	# pruebas= 35	Error= 7	# pruebas= 7	Accurracy = 19 % 	Value= 3	Error= 28	# pruebas= 31	Value= 7	Error= 29	# pruebas= 36
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= N	 pagina correcta= D	# pruebas= 53	Accurracy = 8 % 	Value= 3
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 19 % 	Value= 7	Error= 30	# pruebas= 37	Accurracy = 0 % 	Value= 0	Error= 8
+calculate >>> 	pagina predecida= 	 pagina correcta= K
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 9 % 	Value= 3	Error= 29	# pruebas= 32	Accurracy = 18 % 	Value= 7	Error= 31	# pruebas= 38	# pruebas= 8	Accurracy = 17 % 	Value= 9	Error= 45	# pruebas= 54	Error= 33
+calculate >>> 	pagina predecida= B	 pagina correcta= A
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= O	 pagina correcta= C	Accurracy = 0 % 	Value= 0	Error= 9	# pruebas= 9
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 9 % 	Value= 3	Error= 30	# pruebas= 33
+calculate >>> 	pagina predecida= N	 pagina correcta= A	Accurracy = 18 % 
+calculate >>> 	pagina predecida= A	 pagina correcta= B	Accurracy = 9 % 	Value= 3	Accurracy = 16 % 	Value= 9	Error= 46	# pruebas= 55	# pruebas= 36
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 10	Error= 46	# pruebas= 56	Error= 31
+calculate >>> 	pagina predecida= G	 pagina correcta= F	Accurracy = 18 % 	Value= 10	Error= 47	# pruebas= 57	Value= 7	Error= 32
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 17 % 	Value= 10	Error= 48	# pruebas= 58	Accurracy = 0 % 	Value= 0	Error= 10	# pruebas= 10	# pruebas= 39
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Value= 0	Error= 11	# pruebas= 34
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 8 % 	Value= 3	Error= 34
+calculate >>> 	pagina predecida= N	 pagina correcta= N	# pruebas= 11	Accurracy = 20 % 	Value= 8	Error= 32	# pruebas= 40
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 17 % 	Value= 10
+calculate >>> 	pagina predecida= H	 pagina correcta= B	Accurracy = 20 % 	Value= 8	Error= 33	# pruebas= 41
+calculate >>> 	pagina predecida= 	 pagina correcta= I
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 19 % 	Value= 8	Error= 34	# pruebas= 42	Accurracy = 11 % 	Value= 4	Error= 31
+calculate >>> 	pagina predecida= H	 pagina correcta= J	Accurracy = 19 % 	Value= 8	# pruebas= 37	Error= 35	# pruebas= 43
+calculate >>> 	pagina predecida= 	 pagina correcta= K	Accurracy = 8 % 	# pruebas= 35	Value= 3	Error= 35	# pruebas= 38
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 11 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 8 % 	Accurracy = 0 % 	Value= 0	Error= 12	# pruebas= 12	Error= 49
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Value= 3	Error= 36	# pruebas= 39	Value= 4	Error= 32	# pruebas= 36
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 20 % 	Value= 9	Error= 35	# pruebas= 44
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 11 % 	Value= 4	Error= 33	# pruebas= 37
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 20 % 	Value= 9	Error= 36	# pruebas= 45
+calculate >>> 	pagina predecida= H	 pagina correcta= H
+calculate >>> 	pagina predecida= 	 pagina correcta= K	Accurracy = 10 % 	Accurracy = 11 % 	Value= 4
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 	Value= 4	Value= 0	Error= 36	# pruebas= 40	Accurracy = 20 % 	Value= 9	Error= 37	# pruebas= 46
+calculate >>> 	pagina predecida= N	 pagina correcta= B	Accurracy = 10 % 	Value= 4	Error= 37	# pruebas= 41	# pruebas= 59
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 10 % 
+calculate >>> 	pagina predecida= B	 pagina correcta= D	Accurracy = 17 % 	Value= 10
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Error= 13	# pruebas= 13	Error= 34	# pruebas= 38
+calculate >>> 	pagina predecida= N	 pagina correcta= F	Accurracy = 0 % 	Value= 0	Error= 14	# pruebas= 14	Accurracy = 19 % 	Value= 9	Error= 38	# pruebas= 47
+calculate >>> 	pagina predecida= F	 pagina correcta= D	Accurracy = 0 % 	Value= 0	Error= 15
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 19 % 	Error= 50	# pruebas= 60	Value= 4	Error= 38
+calculate >>> 	pagina predecida= K	 pagina correcta= Q	Accurracy = 0 % 	Value= 0	Error= 1	# pruebas= 1	Value= 9
+calculate >>> 	pagina predecida= F	 pagina correcta= F	# pruebas= 15
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 10 % 	Value= 4	Error= 35	# pruebas= 39	Accurracy = 50 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Value= 1	Accurracy = 0 % 	Value= 0	Error= 16	# pruebas= 16	Error= 39	# pruebas= 48
+calculate >>> 	pagina predecida= H	 pagina correcta= H
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 18 % 	Accurracy = 6 % 	Value= 1	Error= 16	# pruebas= 17	# pruebas= 42
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 18 % 	Value= 9
+calculate >>> 	pagina predecida= F	 pagina correcta= J	Accurracy = 9 % 	Value= 4	Error= 39	# pruebas= 43	Value= 11	Error= 50	# pruebas= 61	Error= 1	# pruebas= 2
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 13 % 
+calculate >>> 	pagina predecida= E	 pagina correcta= A
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 11 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Value= 5	Error= 39	# pruebas= 44	Error= 40	# pruebas= 49
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 11 % 	Value= 2	Error= 16	# pruebas= 18
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 18 % 	Value= 9	Error= 41	# pruebas= 50
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 11 % 
+calculate >>> 	pagina predecida= O	 pagina correcta= F	Accurracy = 18 % 	Accurracy = 33 % 	Value= 9	Value= 1
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 11 % 	Value= 5	Error= 40	# pruebas= 45	Accurracy = 18 % 	Value= 11
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Value= 5	Error= 35	Accurracy = 11 % 	Value= 5	Error= 41	# pruebas= 46	Error= 51	# pruebas= 62
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 11 % 	Value= 5	Error= 42	# pruebas= 47	Error= 2
+calculate >>> 	pagina predecida= E	 pagina correcta= F
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Error= 42	# pruebas= 51	Value= 2	Error= 17
+calculate >>> 	pagina predecida= A	 pagina correcta= K	Accurracy = 17 % 	Value= 9	Error= 43	# pruebas= 52	Accurracy = 10 % 	Value= 5	Error= 43	# pruebas= 48	Accurracy = 17 % 	Value= 11	Error= 52	# pruebas= 63	# pruebas= 3
+calculate >>> 	pagina predecida= N	 pagina correcta= D	# pruebas= 40
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 11	Error= 53	# pruebas= 64
+calculate >>> 	pagina predecida= 	 pagina correcta= E
+calculate >>> 	pagina predecida= H	 pagina correcta= B	Accurracy = 10 % 	Value= 5	Error= 44	# pruebas= 49
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 17 % 	Value= 9	# pruebas= 19	Error= 44	# pruebas= 53
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 10 % 	Value= 2	Error= 18	# pruebas= 20	Accurracy = 10 % 	Value= 5	Error= 45	# pruebas= 50
+calculate >>> 	pagina predecida= K	 pagina correcta= A
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 10 % 	Value= 2
+calculate >>> 	pagina predecida= L	 pagina correcta= D
+calculate >>> 	pagina predecida= G	 pagina correcta= F	Accurracy = 17 % 	Value= 11	Error= 54	# pruebas= 65	Accurracy = 12 % 	Value= 5	Error= 36	# pruebas= 41
+calculate >>> 	pagina predecida= A	 pagina correcta= A
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 12	Error= 54	# pruebas= 66	Accurracy = 25 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 18 % 	Accurracy = 14 % 	Value= 6	Error= 36	# pruebas= 42	Accurracy = 10 % 
+calculate >>> 	pagina predecida= O	 pagina correcta= J	Value= 5	Accurracy = 14 % 	Error= 46	# pruebas= 51	Error= 19	# pruebas= 21	Accurracy = 17 % 
+calculate >>> 	pagina predecida= A	 pagina correcta= K	Value= 9	Error= 45	# pruebas= 54
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Value= 6	Error= 37	# pruebas= 43
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 16 % 	Value= 9	Error= 46	# pruebas= 55	Value= 12	Error= 55	# pruebas= 67	Value= 1	Error= 3	# pruebas= 4
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 10
+calculate >>> 	pagina predecida= F	 pagina correcta= G
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 16 % 	Value= 7	Error= 37	# pruebas= 44	Accurracy = 9 % 	Value= 2	Error= 20	Accurracy = 10 % 	Value= 5	Error= 47	# pruebas= 52	# pruebas= 22
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 9 % 	Value= 5	Error= 48	# pruebas= 53
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 16 % 	Value= 7	Error= 38	# pruebas= 45	Accurracy = 20 % 	Value= 1	Error= 4	# pruebas= 5	Error= 46
+calculate >>> 	pagina predecida= 	 pagina correcta= E	# pruebas= 56	Accurracy = 15 % 	Value= 7	Error= 39	# pruebas= 46
+calculate >>> 	pagina predecida= O	 pagina correcta= F
+calculate >>> 	pagina predecida= A	 pagina correcta= A
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 15 % 	Value= 7	Error= 40	# pruebas= 47	Accurracy = 18 % 	Value= 10	Error= 47	# pruebas= 57
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 15 % 	Value= 7	Error= 41	# pruebas= 48
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 1
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 14 % 	Value= 7	Error= 42	# pruebas= 49
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 9 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 14 % 	Value= 7	Error= 43	# pruebas= 50
+calculate >>> 	pagina predecida= K	 pagina correcta= A
+calculate >>> 	pagina predecida= H	 pagina correcta= F	Value= 2	Error= 21	Error= 5	# pruebas= 6
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 17 % 	Value= 10
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 14 % 	Value= 1	Error= 6	# pruebas= 7	Accurracy = 19 % 	Value= 13	Error= 55	# pruebas= 68
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 13 % 	Value= 1	Error= 7	# pruebas= 8
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 19 % 
+calculate >>> 	pagina predecida= G	 pagina correcta= C	Accurracy = 11 % 	Error= 48	# pruebas= 58	# pruebas= 23
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 17 % 	Value= 10	Error= 49	# pruebas= 59
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 8 % 	Value= 2
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Error= 22	# pruebas= 24	Accurracy = 14 % 	Value= 7	Error= 44	# pruebas= 51
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 12 % 	Value= 3	Error= 22	# pruebas= 25
+calculate >>> 	pagina predecida= A	 pagina correcta= K	Accurracy = 13 % 	Value= 7	Error= 45	# pruebas= 52
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 9 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 13 % 	Accurracy = 12 % 	Value= 3	Error= 23	# pruebas= 26	Accurracy = 17 % 	Value= 10	Error= 50	# pruebas= 60	Value= 1	Error= 8	# pruebas= 9
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 18 % 	Value= 11	Error= 50	# pruebas= 61
+calculate >>> 	pagina predecida= N	 pagina correcta= A	Accurracy = 10 % 	Value= 1	Error= 9	# pruebas= 10
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 18 % 	Value= 11	Error= 51	# pruebas= 62
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 9 % 	Value= 1	Error= 10	# pruebas= 11	Value= 13
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 8 % 	Value= 1	Error= 11	# pruebas= 12
+calculate >>> 	pagina predecida= B	 pagina correcta= F
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 8 % 
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 15 % 	Value= 4	Error= 23	# pruebas= 27	Value= 7	Error= 46	# pruebas= 53	Value= 5	Error= 49	# pruebas= 54
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 14 % 	Value= 4	Error= 24	# pruebas= 28	Value= 1
+calculate >>> 	pagina predecida= G	 pagina correcta= A	Accurracy = 14 % 	Accurracy = 17 % 	Value= 11	Error= 52	# pruebas= 63	Error= 56	# pruebas= 69
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 11	Error= 53	# pruebas= 64	Value= 4	Error= 25
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 17 % 	Value= 11	Error= 54	# pruebas= 65
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 12	Error= 54	# pruebas= 66
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 19 % 	Value= 13	Error= 54	# pruebas= 67
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 19 % 	Value= 13	Error= 55	# pruebas= 68
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 20 % 	Value= 14	Error= 55	# pruebas= 69
+calculate >>> 	pagina predecida= B	 pagina correcta= N	Accurracy = 20 % 	Value= 14	Error= 56	# pruebas= 70	Error= 12	# pruebas= 13
+calculate >>> 	pagina predecida= E	 pagina correcta= A
+calculate >>> 	pagina predecida= N	 pagina correcta= F	Accurracy = 7 % 	Value= 1	Error= 13	# pruebas= 14
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 13 % 
+calculate >>> 	pagina predecida= F	 pagina correcta= D	Accurracy = 7 % 	Value= 1	Error= 14	# pruebas= 15	Accurracy = 9 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= A
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 20 % 	Value= 14	Error= 57	# pruebas= 71	# pruebas= 29
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= B	 pagina correcta= N	Accurracy = 19 % 	Value= 13	Error= 57	# pruebas= 70
+calculate >>> 	pagina predecida= 	 pagina correcta= B	Accurracy = 13 % 	Value= 4	Error= 26	# pruebas= 30
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 18 % 	Value= 13	Error= 58	# pruebas= 71
+calculate >>> 	pagina predecida= B	 pagina correcta= L	Accurracy = 13 % 	Value= 4	Error= 27	# pruebas= 31
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 18 % 	Value= 13	Error= 59	# pruebas= 72
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 13 % 	Accurracy = 19 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 18 % 	Accurracy = 6 % 	Value= 1	Error= 15	# pruebas= 16	Value= 5	Error= 50
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 6 % 	Value= 4	Value= 1	Error= 16	# pruebas= 17	Value= 7	Error= 47	# pruebas= 54	Error= 28	# pruebas= 32	# pruebas= 55	Value= 13	Error= 60	# pruebas= 73	Value= 14
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Error= 58	Accurracy = 19 % 	Value= 14	Error= 60	# pruebas= 74
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 11 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= H	Accurracy = 19 % 	Value= 14	Error= 61	# pruebas= 75
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 12 % 	Accurracy = 18 % 	Value= 14
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 13 % 	Value= 7	Error= 48	# pruebas= 55
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 6 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 14 % 	Value= 8	Error= 48	# pruebas= 56	Error= 62	# pruebas= 76
+calculate >>> 	pagina predecida= F	 pagina correcta= F
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 19 % 	Value= 15	Value= 4	Error= 29	# pruebas= 33
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Value= 6	Error= 50	# pruebas= 56	# pruebas= 72
+calculate >>> 	pagina predecida= F	 pagina correcta= F	Accurracy = 12 % 	Value= 7	Error= 50	# pruebas= 57	Accurracy = 12 % 	Value= 4	Error= 30	# pruebas= 34
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 12 % 	Value= 7	Error= 51	# pruebas= 58
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 14 % 	Value= 5	Error= 30	# pruebas= 35
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Error= 62	Accurracy = 12 % 	# pruebas= 77	Value= 7	Error= 52	# pruebas= 59	Accurracy = 16 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 19 % 	Value= 15	Error= 63	# pruebas= 78	Value= 1	Error= 17	# pruebas= 18
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 20 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Value= 9	Error= 48	# pruebas= 57
+calculate >>> 	pagina predecida= A	 pagina correcta= D	Accurracy = 12 % 	Value= 7	Error= 53	# pruebas= 60
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 19 % 	Accurracy = 11 % 	Value= 7	Error= 54	# pruebas= 61
+calculate >>> 	pagina predecida= H	 pagina correcta= H
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 11 % 	Value= 7	Error= 55	# pruebas= 62	Accurracy = 11 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= F	Accurracy = 11 % 	Value= 7	Error= 56	# pruebas= 63
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 11 % 	Value= 7	Error= 57	# pruebas= 64
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 11 % 	Value= 7	Error= 58	# pruebas= 65	Accurracy = 14 % 	Value= 5	Error= 31	# pruebas= 36
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 12 % 	Value= 8	Error= 58	# pruebas= 66	Value= 16
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Error= 63	Accurracy = 13 % 	Value= 9	Error= 58
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 14 % 	Value= 2	Error= 17	# pruebas= 19	Accurracy = 17 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Value= 10	Error= 48	Value= 14	# pruebas= 58	Error= 59	# pruebas= 73	Accurracy = 10 % 
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Value= 2	Accurracy = 17 % 	Value= 10	Error= 49	# pruebas= 59	Value= 5
+calculate >>> 	pagina predecida= E	 pagina correcta= D	Error= 32	# pruebas= 37	# pruebas= 67	# pruebas= 79
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 13 % 	Value= 9	Error= 59	# pruebas= 68	Accurracy = 17 % 
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 14 % 	Value= 10	Error= 59	# pruebas= 69
+calculate >>> 	pagina predecida= L	 pagina correcta= N	Accurracy = 14 % 	Value= 10	Error= 60	# pruebas= 70
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 14 % 	Value= 10	Error= 61	# pruebas= 71
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 14 % 	Value= 10	Error= 62	# pruebas= 72
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 14 % 	Value= 10	Error= 63	# pruebas= 73	Error= 18	# pruebas= 20
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Accurracy = 20 % 	Value= 15	Error= 59	# pruebas= 74
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Accurracy = 15 % 	Value= 11	Error= 63	# pruebas= 74	Value= 10	Error= 50	# pruebas= 60
+calculate >>> 	pagina predecida= L	 pagina correcta= H	Accurracy = 15 % 	Value= 11	Error= 64	# pruebas= 75
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 18 % 	Value= 11	Error= 50	# pruebas= 61
+calculate >>> 	pagina predecida= K	 pagina correcta= A
+calculate >>> 	pagina predecida= L	 pagina correcta= A
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 14 % 	Accurracy = 18 % 	Value= 11	Error= 51	# pruebas= 62
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 10 % 
+calculate >>> 	pagina predecida= A	 pagina correcta= F	Accurracy = 17 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= H	Accurracy = 20 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= K	Value= 11	Accurracy = 13 % 	Value= 5	Error= 33	# pruebas= 38	Value= 2	Error= 19	# pruebas= 21	Value= 11
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Error= 65	# pruebas= 76	Accurracy = 20 % 	Value= 16	Error= 64	# pruebas= 80	Accurracy = 9 % 
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 14 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Value= 11	Accurracy = 20 % 	Error= 66	# pruebas= 77	Error= 52	# pruebas= 63	Value= 15	Value= 16	Error= 65	# pruebas= 81
+calculate >>> 	pagina predecida= 	 pagina correcta= E
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 2	Error= 20	# pruebas= 22
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 20 % 	Value= 16	Value= 11	Error= 53
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Error= 60	Accurracy = 9 % 	# pruebas= 75	Accurracy = 14 % 	Value= 11	Value= 2
+calculate >>> 	pagina predecida= L	 pagina correcta= A	# pruebas= 64	Error= 66	# pruebas= 82
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 17 % 	Value= 11	Error= 54	# pruebas= 65
+calculate >>> 	pagina predecida= 	 pagina correcta= C	Accurracy = 19 % 	Value= 16
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Error= 67	Accurracy = 18 % 	Value= 12	Error= 54	# pruebas= 66
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 13 % 	Value= 5	Error= 34	# pruebas= 39
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 19 % 	Value= 13	Error= 54	# pruebas= 67	# pruebas= 83
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 21 % 	Value= 14
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 19 % 	Accurracy = 20 % 	Value= 15	Error= 61	Error= 21	# pruebas= 23	Error= 67	# pruebas= 78	# pruebas= 76
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 8 % 	Value= 2	Error= 22	# pruebas= 24	Value= 16	Error= 68	# pruebas= 84
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 12 % 	Value= 3	Error= 22	# pruebas= 25
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 19 % 	Value= 16
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 12 % 	Value= 3	Error= 23	# pruebas= 26	Error= 54
+calculate >>> 	pagina predecida= H	 pagina correcta= H	# pruebas= 68	Accurracy = 15 % 	Value= 4	Error= 23	# pruebas= 27	Error= 69	# pruebas= 85
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 13 % 
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Value= 5
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 20 % 	Value= 14	Error= 55	# pruebas= 69
+calculate >>> 	pagina predecida= E	 pagina correcta= A
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 15 % 	Value= 12	Error= 67	# pruebas= 79	Accurracy = 19 % 	Value= 15	Error= 62	# pruebas= 77
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 15 % 	Value= 12	Error= 68	# pruebas= 80
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 19 % 	Value= 15	Error= 63	# pruebas= 78
+calculate >>> 	pagina predecida= B	 pagina correcta= N	Accurracy = 20 % 	Value= 14	Error= 56	# pruebas= 70
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 20 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 20 % 	Value= 14	Error= 57	Error= 35	# pruebas= 40	Accurracy = 18 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 19 % 	Value= 16
+calculate >>> 	pagina predecida= N	 pagina correcta= B	Value= 5	Error= 23	# pruebas= 28	# pruebas= 71
+calculate >>> 	pagina predecida= O	 pagina correcta= A	Accurracy = 17 % 	Value= 5	Error= 24	Value= 16	Error= 63	# pruebas= 79
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 15 % 	Value= 12	Error= 69	# pruebas= 81	# pruebas= 29
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 19 % 	Value= 14	Error= 58	# pruebas= 72	Accurracy = 12 % 	Value= 5	Error= 36
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 19 % 	Error= 70	# pruebas= 86	Value= 14	Error= 59	# pruebas= 73	# pruebas= 41
+calculate >>> 	pagina predecida= 	 pagina correcta= B
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 12 % 	Value= 5	Error= 37	# pruebas= 42
+calculate >>> 	pagina predecida= E	 pagina correcta= A
+calculate >>> 	pagina predecida= F	 pagina correcta= J	Accurracy = 15 % 	Accurracy = 12 % 	Value= 5	Error= 38	# pruebas= 43
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 20 % 	Value= 16	Error= 64
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 14 % 	Value= 12	Error= 70	# pruebas= 82	Accurracy = 17 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Accurracy = 20 % 	Value= 15
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 18 % 	Value= 16	Error= 71	# pruebas= 87	Error= 59
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 19 % 	Value= 17	Error= 71	# pruebas= 88	Value= 5	Error= 25
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 19 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= C	Value= 6	Accurracy = 14 % 	Error= 38	# pruebas= 44	# pruebas= 80	Value= 12
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Error= 71
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 20 % 	Value= 16	Error= 65	# pruebas= 81	Value= 17	Error= 72	# pruebas= 89	# pruebas= 30	# pruebas= 74
+calculate >>> 	pagina predecida= E	 pagina correcta= L	Accurracy = 16 % 	Value= 5	Error= 26	# pruebas= 31
+calculate >>> 	pagina predecida= L	 pagina correcta= H	Accurracy = 20 % 	Value= 15	Error= 60	# pruebas= 75
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 16 % 	Value= 5	Error= 27	# pruebas= 32
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 21 % 	Value= 16
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 15 % 	Value= 5	Error= 28	# pruebas= 33
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 21 % 	Value= 17	Error= 65	# pruebas= 82	# pruebas= 83	Accurracy = 13 % 	Value= 6	Error= 39
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 15 % 	Value= 13	Error= 71	# pruebas= 84
+calculate >>> 	pagina predecida= E	 pagina correcta= D	Accurracy = 15 % 	Value= 13	Error= 72	# pruebas= 85
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 15 % 	Value= 13	Error= 73	# pruebas= 86
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 15 % 	Value= 13	Error= 74	# pruebas= 87
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 15 % 	Value= 13	Error= 75	# pruebas= 88
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 15 % 	Value= 13	Error= 76	# pruebas= 89
+calculate >>> 	pagina predecida= 	 pagina correcta= C	Accurracy = 20 % 	Value= 17	Error= 66	# pruebas= 83
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 20 % 
+calculate >>> 	pagina predecida= E	 pagina correcta= B	Accurracy = 15 % 	Value= 5	Error= 29	# pruebas= 34	Error= 60	Value= 17	Error= 67	# pruebas= 84
+calculate >>> 	pagina predecida= A	 pagina correcta= D	Accurracy = 20 % 	Value= 17	Error= 68	# pruebas= 85	# pruebas= 45
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 20 % 	Value= 17	Error= 69	# pruebas= 86
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 13 % 	Value= 6
+calculate >>> 	pagina predecida= 	 pagina correcta= I
+calculate >>> 	pagina predecida= N	 pagina correcta= N	# pruebas= 76	Accurracy = 17 % 	Value= 6
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 22 % 	Value= 17	Error= 60	# pruebas= 77	Accurracy = 20 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 22 % 	Value= 17	Error= 61	# pruebas= 78	Error= 40	# pruebas= 46
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 23 % 	Value= 18	Error= 61	# pruebas= 79
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 23 % 	Value= 18	Error= 62	# pruebas= 80
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 22 % 	Value= 18	Error= 63	# pruebas= 81
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 22 % 	Value= 18	Error= 64	# pruebas= 82
+calculate >>> 	pagina predecida= 	 pagina correcta= C	Accurracy = 22 % 	Value= 18	Error= 65	# pruebas= 83
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 21 % 	Value= 18	Error= 66	# pruebas= 84
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 21 % 	Value= 18	Error= 67	# pruebas= 85
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 21 % 	Value= 18	Error= 68	# pruebas= 86
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 21 % 	Value= 17	Error= 70	# pruebas= 87	Error= 29	# pruebas= 35
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 20 % 	Value= 18	Error= 70	# pruebas= 88
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 17 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Value= 18	Accurracy = 20 % 	Error= 69	# pruebas= 87
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= K	 pagina correcta= Q
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 22 % 	Value= 19	Error= 69	Value= 18	Error= 71	# pruebas= 89	Value= 6	Error= 30	# pruebas= 36	# pruebas= 88
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 16 % 	Value= 6	Error= 31	# pruebas= 37
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 21 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= K	Accurracy = 16 % 	Value= 6	Error= 32	# pruebas= 38
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 15 % 	Value= 6	Error= 33	# pruebas= 39
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 18 % 	Value= 7	Error= 33	# pruebas= 40
+calculate >>> 	pagina predecida= N	 pagina correcta= B	Accurracy = 17 % 	Value= 7	Error= 34	# pruebas= 41
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 17 % 	Value= 7	Error= 35	Accurracy = 0 % 	Value= 0	Accurracy = 13 % 	Value= 6	Error= 41	# pruebas= 47
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 13 % 	Value= 6	Error= 42	# pruebas= 48
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 12 % 	Value= 6	Error= 43	# pruebas= 49
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 12 % 	Value= 6	Error= 44	# pruebas= 50
+calculate >>> 	pagina predecida= G	 pagina correcta= F	Accurracy = 12 % 	Value= 6	Error= 45	# pruebas= 51	Error= 1	# pruebas= 1	# pruebas= 42	Value= 19	Error= 70	# pruebas= 89
+calculate >>> 	pagina predecida= F	 pagina correcta= J	Accurracy = 16 % 	Value= 7	Error= 36	# pruebas= 43
+calculate >>> 	pagina predecida= B	 pagina correcta= K
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 12 % 	Value= 6	Error= 46	# pruebas= 52
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 11 % 	Value= 6	Error= 47	# pruebas= 53
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 11 % 	Value= 6	Error= 48	# pruebas= 54
+calculate >>> 	pagina predecida= F	 pagina correcta= F
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 13 % 	Accurracy = 18 % 	Value= 8	Error= 36	# pruebas= 44	Value= 7	Accurracy = 50 % 	Value= 1	Error= 1	# pruebas= 2	Error= 48
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 18 % 	Value= 8	Error= 37	# pruebas= 45	# pruebas= 55
+calculate >>> 	pagina predecida= 	 pagina correcta= E
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 33 % 	Value= 1	Error= 2
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 14 % 	Value= 8	Error= 48	# pruebas= 56	Accurracy = 17 % 
+calculate >>> 	pagina predecida= H	 pagina correcta= F	Value= 8	Accurracy = 14 % 	Value= 8	Error= 49	# pruebas= 57	# pruebas= 3
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 14 % 	Value= 8	Error= 38	Error= 50	# pruebas= 46
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 25 % 	Value= 1
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 17 % 	Value= 8	Error= 39	# pruebas= 47	# pruebas= 58
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 14 % 	Value= 8	Error= 51	# pruebas= 59
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 13 % 	Value= 8	Error= 52	# pruebas= 60
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 17 % 	Value= 8	Error= 40	# pruebas= 48	Error= 3
+calculate >>> 	pagina predecida= N	 pagina correcta= D	# pruebas= 4	Accurracy = 16 % 	Value= 8	Error= 41	# pruebas= 49
+calculate >>> 	pagina predecida= F	 pagina correcta= G	Accurracy = 20 % 	Value= 1	Error= 4	# pruebas= 5
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 1	Error= 5	# pruebas= 6
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 14 % 	Value= 1	Error= 6	# pruebas= 7
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 13 % 	Value= 1	Error= 7	# pruebas= 8
+calculate >>> 	pagina predecida= G	 pagina correcta= C	Accurracy = 11 % 	Value= 1	Error= 8	# pruebas= 9
+calculate >>> 	pagina predecida= N	 pagina correcta= A	Accurracy = 10 % 	Value= 1	Error= 9	# pruebas= 10
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 9 % 	Value= 1	Error= 10	# pruebas= 11
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 8 % 	Value= 1	Error= 11	# pruebas= 12
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 8 % 	Value= 1	Error= 12	# pruebas= 13
+calculate >>> 	pagina predecida= N	 pagina correcta= F	Accurracy = 7 % 	Value= 1	Error= 13	# pruebas= 14
+calculate >>> 	pagina predecida= F	 pagina correcta= D	Accurracy = 7 % 	Value= 1	Error= 14	# pruebas= 15
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 6 % 	Value= 1	Error= 15	# pruebas= 16
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 12 % 	Value= 2	Error= 15	# pruebas= 17
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 17 % 	Value= 3	Error= 15	# pruebas= 18
+calculate >>> 	pagina predecida= N	 pagina correcta= H
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 21 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 16 % 	Value= 8	Error= 42	# pruebas= 50	Value= 4	Accurracy = 13 % 	Value= 8	Error= 53	# pruebas= 61	Error= 15
+calculate >>> 	pagina predecida= E	 pagina correcta= A	# pruebas= 19	Accurracy = 13 % 	Value= 8	Error= 54	# pruebas= 62
+calculate >>> 	pagina predecida= O	 pagina correcta= F	Accurracy = 16 % 	Value= 8	Error= 43	# pruebas= 51
+calculate >>> 	pagina predecida= B	 pagina correcta= F
+calculate >>> 	pagina predecida= B	 pagina correcta= K	Accurracy = 13 % 	Accurracy = 15 % 	Value= 8	Error= 44	# pruebas= 52
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 15 % 	Value= 8	Error= 45	# pruebas= 53
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 15 % 	Value= 8	Error= 46	# pruebas= 54
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Value= 8	Error= 55	# pruebas= 63	Accurracy = 15 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 13 % 	Accurracy = 20 % 	Value= 4	Error= 16	# pruebas= 20	Value= 8
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 19 % 	Value= 4	Error= 17	# pruebas= 21	Value= 8
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Error= 47	Accurracy = 18 % 	# pruebas= 55	Error= 56	# pruebas= 64
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 16 % 	Value= 9
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 12 % 	Value= 4	Error= 18	# pruebas= 22
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 4	Error= 19	# pruebas= 23	Value= 8
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Error= 57	# pruebas= 65	Accurracy = 17 % 	Value= 4	Error= 20	# pruebas= 24
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 14 % 	Value= 9	Error= 57	# pruebas= 66	Error= 47
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 15 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Value= 10	Accurracy = 20 % 	Value= 5	# pruebas= 56	Error= 20	# pruebas= 25	Error= 57
+calculate >>> 	pagina predecida= L	 pagina correcta= A	# pruebas= 67	Accurracy = 19 % 	Value= 5	Error= 21	# pruebas= 26
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 15 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= H
+calculate >>> 	pagina predecida= H	 pagina correcta= F	Accurracy = 16 % 	Value= 9	Error= 48	# pruebas= 57	Accurracy = 19 % 	Value= 5	Error= 22	# pruebas= 27
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 16 % 	Value= 9	Error= 49
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 21 % 	Value= 6	Error= 22	# pruebas= 28	Value= 10	Error= 58	# pruebas= 68	# pruebas= 58
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 21 % 	Value= 6	Error= 23	# pruebas= 29
+calculate >>> 	pagina predecida= J	 pagina correcta= A
+calculate >>> 	pagina predecida= 	 pagina correcta= B	Accurracy = 15 % 	Value= 9	Error= 50	# pruebas= 59
+calculate >>> 	pagina predecida= H	 pagina correcta= H
+calculate >>> 	pagina predecida= B	 pagina correcta= D	Accurracy = 15 % 	Accurracy = 16 % 	Value= 11	Error= 58	Accurracy = 20 % 	Value= 6	Error= 24	# pruebas= 30	# pruebas= 69
+calculate >>> 	pagina predecida= A	 pagina correcta= L	Accurracy = 19 % 	Value= 6	Error= 25	# pruebas= 31
+calculate >>> 	pagina predecida= A	 pagina correcta= N	Accurracy = 16 % 	Value= 11
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 19 % 	Value= 9	Value= 6	Error= 51	# pruebas= 60	Error= 26	# pruebas= 32
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 16 % 	Value= 10	Error= 51	# pruebas= 61
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Error= 59	# pruebas= 70	Accurracy = 18 % 	Value= 6	Error= 27	# pruebas= 33
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 16 % 	Value= 10	Error= 52	# pruebas= 62
+calculate >>> 	pagina predecida= E	 pagina correcta= F
+calculate >>> 	pagina predecida= E	 pagina correcta= B	Accurracy = 18 % 	Value= 6	Error= 28	# pruebas= 34
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 15 % 	Value= 11	Error= 60	# pruebas= 71
+calculate >>> 	pagina predecida= N	 pagina correcta= N
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 16 % 	Accurracy = 20 % 	Accurracy = 15 % 	Value= 11	Error= 61	# pruebas= 72	Value= 10	Error= 53	# pruebas= 63
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 15 % 	Value= 11	Error= 62	# pruebas= 73
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 16 % 	Value= 10
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Value= 7	Error= 28	# pruebas= 35	Error= 54
+calculate >>> 	pagina predecida= N	 pagina correcta= D	# pruebas= 64	Accurracy = 19 % 	Value= 7	Error= 29	# pruebas= 36	Accurracy = 16 % 	Value= 12
+calculate >>> 	pagina predecida= L	 pagina correcta= B
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 15 % 	Value= 10	Error= 55	# pruebas= 65	Accurracy = 19 % 	Value= 7	Error= 30	# pruebas= 37	Error= 62
+calculate >>> 	pagina predecida= 	 pagina correcta= K	Accurracy = 18 % 	Value= 7	Error= 31	# pruebas= 38
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 17 % 	Value= 11	Error= 55	# pruebas= 66
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 18 % 	Value= 7	Error= 32	# pruebas= 39	# pruebas= 74
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 20 % 	Value= 8	Error= 32	# pruebas= 40
+calculate >>> 	pagina predecida= L	 pagina correcta= H	Accurracy = 16 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= B	Value= 11	Accurracy = 20 % 	Error= 56	Accurracy = 16 % 	Value= 12	Error= 63	# pruebas= 75	Value= 8	Error= 33	# pruebas= 41
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 16 % 	Value= 12	Error= 64	# pruebas= 76
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 19 % 	Value= 8	Error= 34	# pruebas= 67	# pruebas= 42
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 16 % 	Value= 11	Error= 57	# pruebas= 68
+calculate >>> 	pagina predecida= G	 pagina correcta= J	Accurracy = 19 % 	Value= 8	Error= 35	# pruebas= 43
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 16 % 	Value= 12	Error= 65	# pruebas= 77
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 20 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 15 % 	Value= 9	Error= 35	# pruebas= 44
+calculate >>> 	pagina predecida= H	 pagina correcta= H
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 17 % 	Value= 12	Error= 57	# pruebas= 69	Value= 12
+calculate >>> 	pagina predecida= B	 pagina correcta= N	Accurracy = 17 % 	Accurracy = 20 % 	Value= 9	Error= 36	# pruebas= 45	Value= 12	Error= 58	# pruebas= 70	Error= 66	# pruebas= 78
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 17 % 	Value= 12
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 16 % 	Value= 13	Error= 66	# pruebas= 79
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 20 % 	Value= 9	Error= 37	# pruebas= 46
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Error= 59	# pruebas= 71	Accurracy = 16 % 	Value= 13	Error= 67	# pruebas= 80
+calculate >>> 	pagina predecida= N	 pagina correcta= D
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 19 % 	Accurracy = 16 % 	Value= 13
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 17 % 	Value= 12	Error= 68	# pruebas= 81	Value= 9	Error= 38	# pruebas= 47
+calculate >>> 	pagina predecida= L	 pagina correcta= A
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 16 % 	Accurracy = 19 % 	Value= 9	Error= 60	# pruebas= 72	Error= 39	# pruebas= 48
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 18 % 	Value= 9	Error= 40	# pruebas= 49	Value= 13	Error= 69	# pruebas= 82
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 16 % 	Value= 12	Error= 61	# pruebas= 73
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Accurracy = 18 % 	Value= 13	Error= 61	# pruebas= 74
+calculate >>> 	pagina predecida= 	 pagina correcta= C	Accurracy = 16 % 	Value= 13	Error= 70	# pruebas= 83
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 18 % 	Value= 9	Error= 41	# pruebas= 50
+calculate >>> 	pagina predecida= L	 pagina correcta= H	Accurracy = 17 % 	Value= 13	Error= 62	# pruebas= 75
+calculate >>> 	pagina predecida= H	 pagina correcta= F
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 18 % 	Accurracy = 17 % 	Value= 13	Error= 63	# pruebas= 76
+calculate >>> 	pagina predecida= L	 pagina correcta= A
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 15 % 	Accurracy = 17 % 	Value= 13	Error= 64	# pruebas= 77	Value= 13	Error= 71	# pruebas= 84	Value= 9
+calculate >>> 	pagina predecida= B	 pagina correcta= D	Accurracy = 15 % 	Value= 13	Error= 72	# pruebas= 85
+calculate >>> 	pagina predecida= 	 pagina correcta= E
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 17 % 	Accurracy = 15 % 	Value= 13	Error= 73	# pruebas= 86	Error= 42
+calculate >>> 	pagina predecida= 	 pagina correcta= I	# pruebas= 51	Value= 13	Error= 65	# pruebas= 78
+calculate >>> 	pagina predecida= A	 pagina correcta= K	Accurracy = 17 % 	Value= 9	Error= 43	# pruebas= 52	Accurracy = 15 % 
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 17 % 
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 14	Error= 65	# pruebas= 79	Value= 9
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Error= 44	# pruebas= 53	Value= 13
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 17 % 	Error= 74	# pruebas= 87	Accurracy = 18 % 	Value= 14	Error= 66	# pruebas= 80
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 15 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 17 % 	Value= 14	Error= 67	# pruebas= 81
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 18 % 	Value= 15	Error= 67	# pruebas= 82	Value= 9
+calculate >>> 	pagina predecida= 	 pagina correcta= C	Error= 45	# pruebas= 54	Accurracy = 18 % 
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 16 % 	Value= 9	Error= 46	# pruebas= 55
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 10	Error= 46	# pruebas= 56
+calculate >>> 	pagina predecida= H	 pagina correcta= F	Accurracy = 18 % 	Value= 13	Error= 75	# pruebas= 88	Value= 10
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Error= 47	Accurracy = 15 % 	Value= 13	Error= 76	# pruebas= 89	Value= 15	Error= 68	# pruebas= 83	# pruebas= 57
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 18 % 	Value= 15	Error= 69	# pruebas= 84
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 17 % 	Value= 10	Error= 48	# pruebas= 58
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 18 % 	Value= 15	Error= 70	# pruebas= 85
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 17 % 	Value= 15	Error= 71	# pruebas= 86
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 17 % 
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 17 % 	Value= 15	Error= 72	# pruebas= 87
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 18 % 	Value= 16	Error= 72	# pruebas= 88	Value= 10	Error= 49	# pruebas= 59
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 18 % 	Value= 16	Error= 73	# pruebas= 89
+calculate >>> 	pagina predecida= E	 pagina correcta= D	Accurracy = 17 % 	Value= 10	Error= 50	# pruebas= 60
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 16 % 	Value= 10	Error= 51	# pruebas= 61
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 16 % 	Value= 10	Error= 52	# pruebas= 62
+calculate >>> 	pagina predecida= B	 pagina correcta= F	Accurracy = 16 % 	Value= 10	Error= 53	# pruebas= 63
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 16 % 	Value= 10	Error= 54	# pruebas= 64
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 15 % 	Value= 10	Error= 55	# pruebas= 65
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 17 % 	Value= 11	Error= 55	# pruebas= 66
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 16 % 	Value= 11	Error= 56	# pruebas= 67
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 16 % 	Value= 11	Error= 57	# pruebas= 68
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 17 % 	Value= 12	Error= 57	# pruebas= 69
+calculate >>> 	pagina predecida= E	 pagina correcta= N	Accurracy = 17 % 	Value= 12	Error= 58	# pruebas= 70
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 17 % 	Value= 12	Error= 59	# pruebas= 71
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 17 % 	Value= 12	Error= 60	# pruebas= 72
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 16 % 	Value= 12	Error= 61	# pruebas= 73
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Accurracy = 18 % 	Value= 13	Error= 61	# pruebas= 74
+calculate >>> 	pagina predecida= L	 pagina correcta= H	Accurracy = 17 % 	Value= 13	Error= 62	# pruebas= 75
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 17 % 	Value= 13	Error= 63	# pruebas= 76
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 18 % 	Value= 14	Error= 63	# pruebas= 77
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 18 % 	Value= 14	Error= 64	# pruebas= 78
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 19 % 	Value= 15	Error= 64	# pruebas= 79
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 19 % 	Value= 15	Error= 65	# pruebas= 80
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 19 % 	Value= 15	Error= 66	# pruebas= 81
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 20 % 	Value= 16	Error= 66	# pruebas= 82
+calculate >>> 	pagina predecida= 	 pagina correcta= C	Accurracy = 19 % 	Value= 16	Error= 67	# pruebas= 83
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 19 % 	Value= 16	Error= 68	# pruebas= 84
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 19 % 	Value= 16	Error= 69	# pruebas= 85
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 19 % 	Value= 16	Error= 70	# pruebas= 86
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 18 % 	Value= 16	Error= 71	# pruebas= 87
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 19 % 	Value= 17	Error= 71	# pruebas= 88
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 19 % 	Value= 17	Error= 72	# pruebas= 89
+calculate >>> 	pagina predecida= K	 pagina correcta= Q	Accurracy = 0 % 	Value= 0	Error= 1	# pruebas= 1
+calculate >>> 	pagina predecida= G	 pagina correcta= F	Accurracy = 0 % 	Value= 0	Error= 2	# pruebas= 2
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 3	# pruebas= 3
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 	Value= 0	Error= 4	# pruebas= 4
+calculate >>> 	pagina predecida= F	 pagina correcta= G	Accurracy = 0 % 	Value= 0	Error= 5	# pruebas= 5
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 	Value= 0	Error= 6	# pruebas= 6
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 	Value= 0	Error= 7	# pruebas= 7
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 	Value= 0	Error= 8	# pruebas= 8
+calculate >>> 	pagina predecida= F	 pagina correcta= C	Accurracy = 0 % 	Value= 0	Error= 9	# pruebas= 9
+calculate >>> 	pagina predecida= N	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 10	# pruebas= 10
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 	Value= 0	Error= 11	# pruebas= 11
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 0 % 	Value= 0	Error= 12	# pruebas= 12
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 13	# pruebas= 13
+calculate >>> 	pagina predecida= N	 pagina correcta= F	Accurracy = 0 % 	Value= 0	Error= 14	# pruebas= 14
+calculate >>> 	pagina predecida= F	 pagina correcta= D	Accurracy = 0 % 	Value= 0	Error= 15	# pruebas= 15
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 16	# pruebas= 16
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 6 % 	Value= 1	Error= 16	# pruebas= 17
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 11 % 	Value= 2	Error= 16	# pruebas= 18
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 11 % 	Value= 2	Error= 17	# pruebas= 19
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 10 % 	Value= 2	Error= 18	# pruebas= 20
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 10 % 	Value= 2	Error= 19	# pruebas= 21
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 9 % 	Value= 2	Error= 20	# pruebas= 22
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 9 % 	Value= 2	Error= 21	# pruebas= 23
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 8 % 	Value= 2	Error= 22	# pruebas= 24
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 12 % 	Value= 3	Error= 22	# pruebas= 25
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 12 % 	Value= 3	Error= 23	# pruebas= 26
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 15 % 	Value= 4	Error= 23	# pruebas= 27
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 14 % 	Value= 4	Error= 24	# pruebas= 28
+calculate >>> 	pagina predecida= H	 pagina correcta= A	Accurracy = 14 % 	Value= 4	Error= 25	# pruebas= 29
+calculate >>> 	pagina predecida= 	 pagina correcta= B	Accurracy = 13 % 	Value= 4	Error= 26	# pruebas= 30
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Accurracy = 16 % 	Value= 5	Error= 26	# pruebas= 31
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 16 % 	Value= 5	Error= 27	# pruebas= 32
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 15 % 	Value= 5	Error= 28	# pruebas= 33
+calculate >>> 	pagina predecida= E	 pagina correcta= B	Accurracy = 15 % 	Value= 5	Error= 29	# pruebas= 34
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 17 % 	Value= 6	Error= 29	# pruebas= 35
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 17 % 	Value= 6	Error= 30	# pruebas= 36
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 16 % 	Value= 6	Error= 31	# pruebas= 37
+calculate >>> 	pagina predecida= 	 pagina correcta= K	Accurracy = 16 % 	Value= 6	Error= 32	# pruebas= 38
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 15 % 	Value= 6	Error= 33	# pruebas= 39
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 15 % 	Value= 6	Error= 34	# pruebas= 40
+calculate >>> 	pagina predecida= N	 pagina correcta= B	Accurracy = 15 % 	Value= 6	Error= 35	# pruebas= 41
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 17 % 	Value= 7	Error= 35	# pruebas= 42
+calculate >>> 	pagina predecida= G	 pagina correcta= J	Accurracy = 16 % 	Value= 7	Error= 36	# pruebas= 43
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 8	Error= 36	# pruebas= 44
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 18 % 	Value= 8	Error= 37	# pruebas= 45
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 8	Error= 38	# pruebas= 46
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 17 % 	Value= 8	Error= 39	# pruebas= 47
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 17 % 	Value= 8	Error= 40	# pruebas= 48
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 16 % 	Value= 8	Error= 41	# pruebas= 49
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 16 % 	Value= 8	Error= 42	# pruebas= 50
+calculate >>> 	pagina predecida= G	 pagina correcta= F	Accurracy = 16 % 	Value= 8	Error= 43	# pruebas= 51
+calculate >>> 	pagina predecida= L	 pagina correcta= K	Accurracy = 15 % 	Value= 8	Error= 44	# pruebas= 52
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 15 % 	Value= 8	Error= 45	# pruebas= 53
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 15 % 	Value= 8	Error= 46	# pruebas= 54
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 15 % 	Value= 8	Error= 47	# pruebas= 55
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 16 % 	Value= 9	Error= 47	# pruebas= 56
+calculate >>> 	pagina predecida= O	 pagina correcta= F	Accurracy = 16 % 	Value= 9	Error= 48	# pruebas= 57
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 17 % 	Value= 10	Error= 48	# pruebas= 58
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 17 % 	Value= 10	Error= 49	# pruebas= 59
+calculate >>> 	pagina predecida= A	 pagina correcta= D	Accurracy = 17 % 	Value= 10	Error= 50	# pruebas= 60
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 16 % 	Value= 10	Error= 51	# pruebas= 61
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 16 % 	Value= 10	Error= 52	# pruebas= 62
+calculate >>> 	pagina predecida= A	 pagina correcta= F	Accurracy = 16 % 	Value= 10	Error= 53	# pruebas= 63
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 16 % 	Value= 10	Error= 54	# pruebas= 64
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 15 % 	Value= 10	Error= 55	# pruebas= 65
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 17 % 	Value= 11	Error= 55	# pruebas= 66
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 16 % 	Value= 11	Error= 56	# pruebas= 67
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 16 % 	Value= 11	Error= 57	# pruebas= 68
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 16 % 	Value= 11	Error= 58	# pruebas= 69
+calculate >>> 	pagina predecida= E	 pagina correcta= N	Accurracy = 16 % 	Value= 11	Error= 59	# pruebas= 70
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 15 % 	Value= 11	Error= 60	# pruebas= 71
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 15 % 	Value= 11	Error= 61	# pruebas= 72
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 15 % 	Value= 11	Error= 62	# pruebas= 73
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Accurracy = 16 % 	Value= 12	Error= 62	# pruebas= 74
+calculate >>> 	pagina predecida= L	 pagina correcta= H	Accurracy = 16 % 	Value= 12	Error= 63	# pruebas= 75
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 16 % 	Value= 12	Error= 64	# pruebas= 76
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 16 % 	Value= 12	Error= 65	# pruebas= 77
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 15 % 	Value= 12	Error= 66	# pruebas= 78
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 16 % 	Value= 13	Error= 66	# pruebas= 79
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 16 % 	Value= 13	Error= 67	# pruebas= 80
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 16 % 	Value= 13	Error= 68	# pruebas= 81
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 16 % 	Value= 13	Error= 69	# pruebas= 82
+calculate >>> 	pagina predecida= K	 pagina correcta= Q	Accurracy = 0 % 	Value= 0	Error= 1	# pruebas= 1
+calculate >>> 	pagina predecida= 	 pagina correcta= C	Accurracy = 16 % 	Value= 13	Error= 70	# pruebas= 83
+calculate >>> 	pagina predecida= B	 pagina correcta= A	Accurracy = 15 % 	Value= 13	Error= 71	# pruebas= 84
+calculate >>> 	pagina predecida= E	 pagina correcta= D	Accurracy = 15 % 	Value= 13	Error= 72	# pruebas= 85
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 15 % 	Value= 13	Error= 73	# pruebas= 86
+calculate >>> 	pagina predecida= O	 pagina correcta= F	Accurracy = 0 % 	Value= 0	Error= 2	# pruebas= 2
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 3	# pruebas= 3
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 	Value= 0	Error= 4	# pruebas= 4
+calculate >>> 	pagina predecida= F	 pagina correcta= G	Accurracy = 0 % 	Value= 0	Error= 5	# pruebas= 5
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 	Value= 0	Error= 6	# pruebas= 6
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 	Value= 0	Error= 7	# pruebas= 7
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 	Value= 0	Error= 8	# pruebas= 8
+calculate >>> 	pagina predecida= F	 pagina correcta= C	Accurracy = 0 % 	Value= 0	Error= 9	# pruebas= 9
+calculate >>> 	pagina predecida= N	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 10	# pruebas= 10
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 	Value= 0	Error= 11	# pruebas= 11
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 0 % 	Value= 0	Error= 12	# pruebas= 12
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 13	# pruebas= 13
+calculate >>> 	pagina predecida= N	 pagina correcta= F	Accurracy = 0 % 	Value= 0	Error= 14	# pruebas= 14
+calculate >>> 	pagina predecida= F	 pagina correcta= D	Accurracy = 0 % 	Value= 0	Error= 15	# pruebas= 15
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 16	# pruebas= 16
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 0 % 	Value= 0	Error= 17	# pruebas= 17
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 6 % 	Value= 1	Error= 17	# pruebas= 18
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 11 % 	Value= 2	Error= 17	# pruebas= 19
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 10 % 	Value= 2	Error= 18	# pruebas= 20
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 10 % 	Value= 2	Error= 19	# pruebas= 21
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 9 % 	Value= 2	Error= 20	# pruebas= 22
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 9 % 	Value= 2	Error= 21	# pruebas= 23
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 8 % 	Value= 2	Error= 22	# pruebas= 24
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 12 % 	Value= 3	Error= 22	# pruebas= 25
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 12 % 	Value= 3	Error= 23	# pruebas= 26
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 11 % 	Value= 3	Error= 24	# pruebas= 27
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 11 % 	Value= 3	Error= 25	# pruebas= 28
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 10 % 	Value= 3	Error= 26	# pruebas= 29
+calculate >>> 	pagina predecida= 	 pagina correcta= B	Accurracy = 10 % 	Value= 3	Error= 27	# pruebas= 30
+calculate >>> 	pagina predecida= A	 pagina correcta= L	Accurracy = 10 % 	Value= 3	Error= 28	# pruebas= 31
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 15 % 	Value= 13	Error= 74	# pruebas= 87
+calculate >>> 	pagina predecida= N	 pagina correcta= H
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 9 % 	Value= 3	Error= 29	# pruebas= 32
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 9 % 	Value= 3	Error= 30	# pruebas= 33
+calculate >>> 	pagina predecida= E	 pagina correcta= B	Accurracy = 9 % 	Value= 3	Error= 31	# pruebas= 34
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 11 % 	Value= 4	Error= 31	# pruebas= 35
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 11 % 	Value= 4	Error= 32	# pruebas= 36
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 11 % 	Value= 4	Error= 33	# pruebas= 37
+calculate >>> 	pagina predecida= 	 pagina correcta= K	Accurracy = 11 % 	Value= 4	Error= 34	# pruebas= 38
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 10 % 	Value= 4	Error= 35	# pruebas= 39
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 10 % 	Value= 4	Error= 36	# pruebas= 40
+calculate >>> 	pagina predecida= H	 pagina correcta= B	Accurracy = 10 % 	Value= 4	Error= 37	# pruebas= 41
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 10 % 	Value= 4	Error= 38	# pruebas= 42
+calculate >>> 	pagina predecida= G	 pagina correcta= J	Accurracy = 9 % 	Value= 4	Error= 39	# pruebas= 43
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 11 % 	Value= 5	Error= 39	# pruebas= 44
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 11 % 	Value= 5	Error= 40	# pruebas= 45
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 11 % 	Value= 5	Error= 41	# pruebas= 46
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 11 % 	Value= 5	Error= 42	# pruebas= 47
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 10 % 	Value= 5	Error= 43	# pruebas= 48
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 10 % 	Value= 5	Error= 44	# pruebas= 49
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 10 % 	Value= 5	Error= 45	# pruebas= 50
+calculate >>> 	pagina predecida= O	 pagina correcta= F	Accurracy = 10 % 	Value= 5	Error= 46	# pruebas= 51
+calculate >>> 	pagina predecida= L	 pagina correcta= K	Accurracy = 10 % 	Value= 5	Error= 47	# pruebas= 52
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 9 % 	Value= 5	Error= 48	# pruebas= 53
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 9 % 	Value= 5	Error= 49	# pruebas= 54
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 9 % 	Value= 5	Error= 50	# pruebas= 55
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 11 % 	Value= 6	Error= 50	# pruebas= 56
+calculate >>> 	pagina predecida= G	 pagina correcta= F	Accurracy = 11 % 	Value= 6	Error= 51	# pruebas= 57
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 12 % 	Value= 7	Error= 51	# pruebas= 58
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 12 % 	Value= 7	Error= 52	# pruebas= 59
+calculate >>> 	pagina predecida= B	 pagina correcta= D	Accurracy = 12 % 	Value= 7	Error= 53	# pruebas= 60
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 13 % 	Value= 8	Error= 53	# pruebas= 61
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 13 % 	Value= 8	Error= 54	# pruebas= 62
+calculate >>> 	pagina predecida= L	 pagina correcta= F	Accurracy = 13 % 	Value= 8	Error= 55	# pruebas= 63
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 13 % 	Value= 8	Error= 56	# pruebas= 64
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 12 % 	Value= 8	Error= 57	# pruebas= 65
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 14 % 	Value= 9	Error= 57	# pruebas= 66
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 13 % 	Value= 9	Error= 58	# pruebas= 67
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 13 % 	Value= 9	Error= 59	# pruebas= 68
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 14 % 	Value= 10	Error= 59	# pruebas= 69
+calculate >>> 	pagina predecida= B	 pagina correcta= N	Accurracy = 14 % 	Value= 10	Error= 60	# pruebas= 70
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 14 % 	Value= 10	Error= 61	# pruebas= 71
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 14 % 	Value= 10	Error= 62	# pruebas= 72
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 14 % 	Value= 10	Error= 63	# pruebas= 73
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Accurracy = 15 % 	Value= 11	Error= 63	# pruebas= 74
+calculate >>> 	pagina predecida= L	 pagina correcta= H	Accurracy = 15 % 	Value= 11	Error= 64	# pruebas= 75
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 16 % 	Value= 12	Error= 64	# pruebas= 76
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 17 % 	Value= 13	Error= 64	# pruebas= 77
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 13	Error= 65	# pruebas= 78
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 14	Error= 65	# pruebas= 79
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 18 % 	Value= 14	Error= 66
+calculate >>> 	pagina predecida= K	 pagina correcta= Q	Accurracy = 0 % 	Value= 0	Error= 1	# pruebas= 1
+calculate >>> 	pagina predecida= O	 pagina correcta= F	Accurracy = 0 % 	Value= 0	Error= 2	# pruebas= 2
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 3	# pruebas= 3
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 	Value= 0	Error= 4	# pruebas= 4
+calculate >>> 	pagina predecida= F	 pagina correcta= G	Accurracy = 0 % 	Value= 0	Error= 5	# pruebas= 5
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 0 % 	Value= 0	Error= 6	# pruebas= 6
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 	Value= 0	Error= 7	# pruebas= 7
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 	Value= 0	Error= 8	# pruebas= 8
+calculate >>> 	pagina predecida= O	 pagina correcta= C	Accurracy = 0 % 	Value= 0	Error= 9	# pruebas= 9
+calculate >>> 	pagina predecida= N	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 10	# pruebas= 10
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 0 % 	Value= 0	Error= 11	# pruebas= 11
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 0 % 	Value= 0	Error= 12	# pruebas= 12
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 13	# pruebas= 13
+calculate >>> 	pagina predecida= N	 pagina correcta= F	Accurracy = 0 % 	Value= 0	Error= 14	# pruebas= 14
+calculate >>> 	pagina predecida= F	 pagina correcta= D	Accurracy = 0 % 	Value= 0	Error= 15	# pruebas= 15
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 0 % 	Value= 0	Error= 16	# pruebas= 16
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 0 % 	Value= 0	Error= 17	# pruebas= 17
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 6 % 	Value= 1	Error= 17	# pruebas= 18
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 11 % 	Value= 2	Error= 17	# pruebas= 19
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 10 % 	Value= 2	Error= 18	# pruebas= 20
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 10 % 	Value= 2	Error= 19	# pruebas= 21
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 9 % 	Value= 2	Error= 20	# pruebas= 22
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 9 % 	Value= 2	Error= 21	# pruebas= 23
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 8 % 	Value= 2	Error= 22	# pruebas= 24
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 12 % 	Value= 3	Error= 22	# pruebas= 25
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 12 % 	Value= 3	Error= 23	# pruebas= 26
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 15 % 	Value= 4	Error= 23	# pruebas= 27
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 14 % 	Value= 4	Error= 24	# pruebas= 28
+calculate >>> 	pagina predecida= F	 pagina correcta= A	Accurracy = 14 % 	Value= 4	Error= 25	# pruebas= 29
+calculate >>> 	pagina predecida= 	 pagina correcta= B	Accurracy = 13 % 	Value= 4	Error= 26	# pruebas= 30
+calculate >>> 	pagina predecida= B	 pagina correcta= L	Accurracy = 13 % 	Value= 4	Error= 27	# pruebas= 31
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 16 % 	Value= 5	Error= 27	# pruebas= 32
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 15 % 	Value= 5	Error= 28	# pruebas= 33
+calculate >>> 	pagina predecida= A	 pagina correcta= B	Accurracy = 15 % 	Value= 5	Error= 29	# pruebas= 34
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 17 % 	Value= 6	Error= 29	# pruebas= 35
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 17 % 	Value= 6	Error= 30	# pruebas= 36
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 16 % 	Value= 6	Error= 31	# pruebas= 37
+calculate >>> 	pagina predecida= 	 pagina correcta= K	Accurracy = 16 % 	Value= 6	Error= 32	# pruebas= 38
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 15 % 	Value= 6	Error= 33	# pruebas= 39
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 18 % 	Value= 7	Error= 33	# pruebas= 40
+calculate >>> 	pagina predecida= N	 pagina correcta= B	Accurracy = 17 % 	Value= 7	Error= 34	# pruebas= 41
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 17 % 	Value= 7	Error= 35	# pruebas= 42
+calculate >>> 	pagina predecida= O	 pagina correcta= J	Accurracy = 16 % 	Value= 7	Error= 36	# pruebas= 43
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 8	Error= 36	# pruebas= 44
+calculate >>> 	pagina predecida= 	 pagina correcta= A	Accurracy = 18 % 	Value= 8	Error= 37	# pruebas= 45
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 8	Error= 38	# pruebas= 46
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 17 % 	Value= 8	Error= 39	# pruebas= 47
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 17 % 	Value= 8	Error= 40	# pruebas= 48
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 16 % 	Value= 8	Error= 41	# pruebas= 49
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 16 % 	Value= 8	Error= 42	# pruebas= 50
+calculate >>> 	pagina predecida= G	 pagina correcta= F	Accurracy = 16 % 	Value= 8	Error= 43	# pruebas= 51
+calculate >>> 	pagina predecida= A	 pagina correcta= K	Accurracy = 15 % 	Value= 8	Error= 44	# pruebas= 52
+calculate >>> 	pagina predecida= L	 pagina correcta= B	Accurracy = 15 % 	Value= 8	Error= 45	# pruebas= 53
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 15 % 	Value= 8	Error= 46	# pruebas= 54
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 15 % 	Value= 8	Error= 47	# pruebas= 55
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 16 % 	Value= 9	Error= 47	# pruebas= 56
+calculate >>> 	pagina predecida= F	 pagina correcta= F	Accurracy = 18 % 	Value= 10	Error= 47	# pruebas= 57
+calculate >>> 	pagina predecida= N	 pagina correcta= H	Accurracy = 17 % 	Value= 10	Error= 48	# pruebas= 58
+calculate >>> 	pagina predecida= J	 pagina correcta= A	Accurracy = 17 % 	Value= 10	Error= 49	# pruebas= 59
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 17 % 	Value= 10	Error= 50	# pruebas= 60
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 18 % 	Value= 11	Error= 50	# pruebas= 61
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 18 % 	Value= 11	Error= 51	# pruebas= 62
+calculate >>> 	pagina predecida= E	 pagina correcta= F	Accurracy = 17 % 	Value= 11	Error= 52	# pruebas= 63
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 17 % 	Value= 11	Error= 53	# pruebas= 64
+calculate >>> 	pagina predecida= L	 pagina correcta= D	Accurracy = 17 % 	Value= 11	Error= 54	# pruebas= 65
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 18 % 	Value= 12	Error= 54	# pruebas= 66
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 19 % 	Value= 13	Error= 54	# pruebas= 67
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 19 % 	Value= 13	Error= 55	# pruebas= 68
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 20 % 	Value= 14	Error= 55	# pruebas= 69
+calculate >>> 	pagina predecida= L	 pagina correcta= N	Accurracy = 20 % 	Value= 14	Error= 56	# pruebas= 70
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 20 % 	Value= 14	Error= 57	# pruebas= 71
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 19 % 	Value= 14	Error= 58	# pruebas= 72
+calculate >>> 	pagina predecida= N	 pagina correcta= D	Accurracy = 19 % 	Value= 14	Error= 59	# pruebas= 73
+calculate >>> 	pagina predecida= L	 pagina correcta= L	Accurracy = 20 % 	Value= 15	Error= 59	# pruebas= 74
+calculate >>> 	pagina predecida= L	 pagina correcta= H	Accurracy = 20 % 	Value= 15	Error= 60	# pruebas= 75
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 20 % 	Value= 15	Error= 61	# pruebas= 76
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 21 % 	Value= 16	Error= 61	# pruebas= 77
+calculate >>> 	pagina predecida= 	 pagina correcta= E	Accurracy = 21 % 	Value= 16	Error= 62	# pruebas= 78
+calculate >>> 	pagina predecida= N	 pagina correcta= N	Accurracy = 22 % 	Value= 17	Error= 62	# pruebas= 79
+calculate >>> 	pagina predecida= K	 pagina correcta= A	Accurracy = 21 % 	Value= 17	Error= 63	# pruebas= 80
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 21 % 	Value= 17	Error= 64	# pruebas= 81
+calculate >>> 	pagina predecida= L	 pagina correcta= A	Accurracy = 21 % 	Value= 17	Error= 65	# pruebas= 82
+calculate >>> 	pagina predecida= 	 pagina correcta= C	Accurracy = 20 % 	Value= 17	Error= 66	# pruebas= 83
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 21 % 	Value= 18	Error= 66	# pruebas= 84	Accurracy = 15 % 	Value= 13	Error= 75	# pruebas= 88
+calculate >>> 	pagina predecida= A	 pagina correcta= D	Accurracy = 21 % 	Value= 18	Error= 67	# pruebas= 85
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 21 % 	Value= 18	Error= 68	# pruebas= 86
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 21 % 	Value= 18	Error= 69	# pruebas= 87
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 22 % 	Value= 19	Error= 69	# pruebas= 88
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 21 % 	Value= 19	Error= 70	# pruebas= 89	# pruebas= 80
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 17 % 	Value= 14	Error= 67	# pruebas= 81
+calculate >>> 	pagina predecida= E	 pagina correcta= A	Accurracy = 17 % 	Value= 14	Error= 68	# pruebas= 82
+calculate >>> 	pagina predecida= 	 pagina correcta= C	Accurracy = 17 % 	Value= 14	Error= 69	# pruebas= 83
+calculate >>> 	pagina predecida= A	 pagina correcta= A	Accurracy = 18 % 	Value= 15	Error= 69	# pruebas= 84
+calculate >>> 	pagina predecida= E	 pagina correcta= D	Accurracy = 18 % 	Value= 15	Error= 70	# pruebas= 85
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 17 % 	Value= 15	Error= 71	# pruebas= 86
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 15 % 	Value= 13	Error= 76	# pruebas= 89
+calculate >>> 	pagina predecida= 	 pagina correcta= I	Accurracy = 17 % 	Value= 15	Error= 72	# pruebas= 87
+calculate >>> 	pagina predecida= H	 pagina correcta= H	Accurracy = 18 % 	Value= 16	Error= 72	# pruebas= 88
+calculate >>> 	pagina predecida= N	 pagina correcta= M	Accurracy = 18 % 	Value= 16	Error= 73	# pruebas= 89[INFO] [MetricEvaluator] Iteration 0
+[INFO] [MetricEvaluator] EngineParams: {"dataSourceParams":{"":{"appId":22}},"preparatorParams":{"":{}},"algorithmParamsList":[{"lempelziv":{"numAlphabet":5}}],"servingParams":{"":{}}}
+[INFO] [MetricEvaluator] Result: MetricScores(0.18089887640449437,List())
+[INFO] [MetricEvaluator] Writing best variant params to disk (best.json)...
+[INFO] [CoreWorkflow$] Updating evaluation instance with result: MetricEvaluatorResult:
+  # engine params evaluated: 1
+Optimal Engine Params:
+  {
+  "dataSourceParams":{
+    "":{
+      "appId":22
+    }
+  },
+  "preparatorParams":{
+    "":{
+      
+    }
+  },
+  "algorithmParamsList":[{
+    "lempelziv":{
+      "numAlphabet":5
+    }
+  }],
+  "servingParams":{
+    "":{
+      
+    }
+  }
+}
+Metrics:
+  Accuracy: 0.18089887640449437
+The best variant params can be found in best.json
+[INFO] [CoreWorkflow$] runEvaluation completed

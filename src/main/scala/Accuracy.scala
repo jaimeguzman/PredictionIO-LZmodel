@@ -16,25 +16,37 @@ case class Accuracy() extends
   println( "\t\t\t>>>>Acurracy check \t")
 
  var value  = 0.0
+ var value2  = 0.0
  var error  = 0.0
  var counter = 0.0
 
 
-  def calculate(query: Query,
-                predicted: PredictedResult,
-                actual: ActualResult): Double = {
+  def calculate(query: Query,  predicted: PredictedResult, actual: ActualResult): Double = {
 
 
     counter+=1.0
-    println( "calculate\t>>> \t actual page\t    "+actual.actualRes+ "\t predicted page\t"+ predicted.result)
-
-    if(  predicted.result == actual.actualRes ) value +=1.0
-    else value += 0.0; error +=1.0;
-    // println( "\tSi conchetumareeee: "+ predicted.result+"\t"+actual.actualRes)
 
 
+    if(  predicted.result == actual.actualRes ){
+      value2 +=1.0
+      value =1.0
+    }
+    else{
+      value = 0.0;
+      error +=1.0;
+    }
 
-    println("\t\t\t\t\t\tThe error to predict is::"+ error/4 + "\t counter: "+counter )
+
+
+
+/*
+    print("\ncalculate >>> "+"\tpagina predecida= "+predicted.result+ "\t pagina correcta= "  +actual.actualRes )
+    print("\tAccurracy = "+ ((value2/counter)*100).round + " % " )
+    print("\tValue= "+value2.round )
+    print("\tError= "+ error.round )
+    print("\t# pruebas= "+counter.round)
+*/
+
     value
   }
 
@@ -53,7 +65,7 @@ object EngineParamsList extends EngineParamsGenerator {
   // First, we define the base engine params. It specifies the appId from which
   // the data is read, and a evalK parameter is used to define the
   // cross-validation.
-  val baseEP = EngineParams( dataSourceParams = DataSourceParams( appId = 3 ))
+  val baseEP = EngineParams( dataSourceParams = DataSourceParams( appId = 1))
 
 
    //println( baseEP.dataSourceParams._1 )

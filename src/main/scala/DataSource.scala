@@ -69,9 +69,7 @@ class DataSource(val dsp: DataSourceParams)
         userAccess
     }.cache()
 
-    //println("::::::::RATSLABS:::webAcessRDD "+webAccessRDD.getClass )
-    //webAccessRDD.foreach( f => println( f ) )
-   // println("\n::::::::RATSLABS::: labeledPOINTS loaded count()"+ webAccessRDD.count())
+
 
 
     new TrainingData(webAccessRDD)
@@ -133,8 +131,8 @@ class DataSource(val dsp: DataSourceParams)
 
 
     /**Folds Limits**/
-    val foldTraining: Int = 1
-    val foldTesting:  Int = 1
+    val foldTraining: Int = 50
+    val foldTesting:  Int = 50
 
     /**Training**/
     val trainingSequences     = webAccessRDD.filter( _.user.get < foldTraining    )
@@ -151,7 +149,7 @@ class DataSource(val dsp: DataSourceParams)
         var tmp:String = ""
         ( new TrainingData(trainingSequences),
           new EmptyEvaluationInfo,
-          testingSequencesGroup.filter(_._1.get > 1 ).map {
+          testingSequencesGroup.filter(_._1.get > foldTesting ).map {
 
             p =>
 
@@ -164,7 +162,8 @@ class DataSource(val dsp: DataSourceParams)
                 ultima    = tmp.charAt(tmp.length-1 ).toString
               }
 
-              println(  ">>> session:\t\t\t penultimate page:  "+ penultima +"\t last page:  \t"+ ultima+"\tsess: "+tmp)
+              println(  "DATASOURCE >>>penultimate page= "+ penultima + "  last page= "+ ultima
+                                    +"  session= "+tmp)/**/
               tmp = ""
 
 
@@ -182,16 +181,22 @@ class DataSource(val dsp: DataSourceParams)
   }
 }
 
+
+
+
+
+
+
 case class WebAccess( user: Option[Int],page: Option[String],pos:  Option[Int])
   extends Serializable with Ordered[WebAccess] {
 
 
   val orderingById: Ordering[WebAccess] = Ordering.by(e => e.user.get )
 
-  import scala.math.Ordered.orderingToOrdered
+
   def compare( a:WebAccess ) = user.get.compareTo(a.user.get)
 
-  //def compare(that: WebAccess): Int = (this.user.get, this.load) compare (that.tag, that.load)
+
 
 }
 

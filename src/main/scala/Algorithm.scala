@@ -93,7 +93,7 @@ class Algorithm(val ap: AlgorithmParams)
 
 
   def train(sc: SparkContext ,   data: PreparedData): LZModel = {
-    println("\n.... Training .....\n")
+    //println("\n.... Training .....\n")
 
     require(!data.labeledPoints.take(1).isEmpty,
       s"RDD[WebAccess]  PreparedData no puede estar vacio." +
@@ -101,15 +101,12 @@ class Algorithm(val ap: AlgorithmParams)
         " y Preprator genera PreparedData correctamente.")
 
     val webaccessLoad: RDD[WebAccess] = data.labeledPoints
-
     val trie = lztrie.trie
 
     val lastUserWebAccess = webaccessLoad.takeOrdered(1)(Ordering[Int].reverse.on(_.user.get) ).toList.head.user.get
+    val webaccessMap      = webaccessLoad.map( x => List(x.user,x.page )  ).collect()
+    val webaccessGrouped  = webaccessMap.groupBy(_.head).toList
 
-    val webaccessMap = webaccessLoad.map( x => List(x.user,x.page )  ).collect()
-
-    val webaccessGrouped = webaccessMap.groupBy(_.head).toList
-    //test2.sortBy( _._1.get.asInstanceOf[Int] )
 
     /**
      * TEST
@@ -142,68 +139,47 @@ class Algorithm(val ap: AlgorithmParams)
     // this is for iterate all the session of all the users
     for( wg   <- webaccessGrouped  ){
 
-      val user_session = Stack[String]()
-      val num_pages    = wg._2.length
-
-
-      val dictionary = Stack[String]()
-
-
+      val user_session  = Stack[String]()
+      val num_pages     = wg._2.length
+      val dictionary    = Stack[String]()
       var phrase:String = ""
 
-      // fill data
-//      println("\t")
-
+      // Restore the user session from RDD
       for (i <- 0 until num_pages ) {
         val c = wg._2.apply(i).last.get.asInstanceOf[String]
         user_session.push(c)
         phrase += c
       }
-      //println()
-
-
 
 
       val phraseCharArray = phrase.toCharArray
 
+      // Add the root symbol
       if( phrase.length >0 ) dictionary.push( phraseCharArray(0).toString  )
 
 
 
-
+      // Here is the Lempel Ziv 78 algorithm
       var w:String =""
 
       for( x <- 0 until phraseCharArray.length   ){
-
         val ch = phraseCharArray(x)
         w = w.concat(ch.toString)
 
         if( ! dictionary.contains( w )  ){
-
-        //  println( "if:"+ ch )
           dictionary.push(  w  )
-
           w=""
-
         }
+
 
       }
 
+
+      // Add to the trie
       for(   r <- dictionary.reverse   )  trie.append(r) //print ("\t"+ r )
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -258,8 +234,8 @@ class Algorithm(val ap: AlgorithmParams)
     */
 
 
-    trie.printTree( p => print(p))
-     println()
+    //trie.printTree( p => print(p))
+     //println()
     new LZModel(trie)
   }
 
@@ -267,35 +243,11 @@ class Algorithm(val ap: AlgorithmParams)
 
 
   def predict(model: LZModel, query: Query): PredictedResult = {
-     val lzResult =      lztrie.trie
+    val lzResult =      lztrie.trie
 
-
-
-     //val tester = lzResult.findByPrefix("EJ")
-     //println("la ruta hasta EJ es :\t"+ tester.seq )
-     //for( t <- tester)    println(t)
-
-     //print(" La query hecha es\t ")
-     //print( query.webaccess.last.toString + "\t "+ query.num +"\n\n")
-
-
-
-
-
-    //lzResult.predictNextPage( query.webaccess )
-
-
-
-    // Working on it
-    //lzResult.updateCounters(c => print(c))
-    //println()
-
-    //lzResult.printTree( t => print( t ) )
-    //println()
+    lzResult.printTree( t => print( t ) ); println();
 
     new PredictedResult( lzResult.predictNextPage( query.webaccess ) )
-
-
 
   }
 

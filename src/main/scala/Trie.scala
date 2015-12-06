@@ -264,10 +264,15 @@ class TrieNode(val char: Option[Char] = None,
     val alphabet            = Stack[String]()
 
 
-
+    //,"R","S","T", "U","V","W","X","Y","Z")
     alphabet.push("A","B","C","D","E","F","G","H","I","J",
       "K","L","M","N","O","P","Q");
-      //,"R","S","T", "U","V","W","X","Y","Z")
+
+
+    //nothin send
+    if( param.length == 0 || param =="" ){
+      nextSymbol = alphabet(random.nextInt(alphabet.length))
+    }
 
     for( t <- 0 until  resultFindBP.length ){
 
@@ -276,17 +281,26 @@ class TrieNode(val char: Option[Char] = None,
         if( param.length > 1 ) {
 
           countPosibility+=1
-          println( "t \t\t"+ resultFindBP(t) )
-          println(  "t.stripPrefix(param) "+ resultFindBP(t).stripPrefix(param) )
+          //println( "t \t\t"+ resultFindBP(t) )
+          //println(  "t.stripPrefix(param) "+ resultFindBP(t).stripPrefix(param) )
           stack.push(resultFindBP(t).stripPrefix(param))
           //nextSymbol = resultFindBP(t).stripPrefix(param)
           nextSymbol = stack(random.nextInt(stack.length))
 
         }else{
-
-          println(">>else" )
           // Aqui cuando es un query de length 1 busca el prefijo
-         nextSymbol = resultFindBP(t).stripPrefix( param )
+
+         //print(">>else" )
+
+          stack.push( resultFindBP(t).stripPrefix( param )  )
+
+          if( param.length +1 == resultFindBP(t).length  ){
+           // println(">>>"+ nextSymbol  + "\t "+ resultFindBP(t)  )
+
+
+            nextSymbol = stack(random.nextInt(stack.length) )
+          }
+
 
 
         }
@@ -299,16 +313,18 @@ class TrieNode(val char: Option[Char] = None,
     }
 
     // Caso de nodo hoja sin hijo y sin simbolo siguiente
-    if( resultFindBP=="" || nextSymbol==""  ){
+    // lo que sucede aca es que epsilon se come el siguiente simbolo y despues todos los eventos son equiporbables
+    // por lo cual es un random de 1/17 o 1/alphabet
+    if( resultFindBP==""   ){
       nextSymbol = alphabet(random.nextInt(alphabet.length))
     }
 
 
 
     if( stack.length  > 0 ){
-      println( "stack.length "+ stack.length  )
-      println( "random number "+ random.nextInt(stack.length)  )
-      println( "random result "+ stack(random.nextInt(stack.length)   ) )
+      //println( "stack.length "+ stack.length  )
+      //println( "random number "+ random.nextInt(stack.length)  )
+      //println( "random result "+ stack(random.nextInt(stack.length)   ) )
     }
 
 
@@ -335,6 +351,7 @@ class TrieNode(val char: Option[Char] = None,
 
         var aux:Int = 0
 
+        if(param.length > 0 ){
         nodes.foreach(
           node =>{
 
@@ -354,15 +371,19 @@ class TrieNode(val char: Option[Char] = None,
             }
           }
         )
+        }
+
         predictHelper(nodes.flatMap(node => node.children.values): _*)
 
       }
     }
+
+
     //Se me va fuera de rango
     //currentIndex += 1
     predictHelper(this)
     //println(  ">>> predictTo:\t\t what's the next?   "+ param+ "\t ResultPredict: "+ nextSymbol.last.toString +"\t length:  "+ nextSymbol.length+ " of "+nextSymbol )
-    println(  ">>> predictTo:\t\t what's the next?   "+ param+ "\t ResultPredict: "+ nextSymbol )
+    println(  "TRIE >>>  what's the nextsymbol ?: "+ param+ "\t ResultPredict= "+ nextSymbol+ "\t" )
 
     nextSymbol
   }

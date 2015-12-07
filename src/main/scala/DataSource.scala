@@ -130,9 +130,10 @@ class DataSource(val dsp: DataSourceParams)
     */
 
 
+
     /**Folds Limits**/
     val foldTraining: Int = 100
-    val foldTesting:  Int = 100
+    val foldTesting:  Int = foldTraining
 
     /**Training**/
     val trainingSequences     = webAccessRDD.filter( _.user.get < foldTraining    )

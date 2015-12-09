@@ -288,8 +288,7 @@ class TrieNode(val char: Option[Char] = None,
           nextSymbol = stack(random.nextInt(stack.length))
 
         }else{
-          // Aqui cuando es un query de length 1 busca el prefijo
-
+        // Aqui cuando es un query de length 1 busca el prefijo
          //print(">>else" )
 
           stack.push( resultFindBP(t).stripPrefix( param )  )

@@ -236,6 +236,9 @@ class Algorithm(val ap: AlgorithmParams)
 
    // lzResult.printTree( t => print( t ) ); println();
 
+
+    trie.printTree( t => print( t ) ); println();
+
     new LZModel(trie)
   }
 

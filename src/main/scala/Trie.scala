@@ -270,7 +270,14 @@ class TrieNode(val char: Option[Char] = None,
 
     // CUANDO PREGUNTAN POR EPSILON DEBO ENTREGAR DEVOLVERME A LA RAIZ
     // Y PREGUNTAR POR EL SIGUIENTE SIMBOLO CON MEJOR FRECUENCIA
-    if( param.length == 0 || param =="" ){
+
+    /**
+     * THIRD CONDITION OR:
+     * CUANDO ENCUENTRO UN NODO QUE NO TIENE HIJOS Y ESTA YA EN EL FINAL O ES UNA
+     * RAMA NO COMPLETA O UN NODO INTERMEDIO.
+     */
+
+    if( param.length == 0 || param =="" || resultFindBP.length == 1 ){
       nextSymbol = alphabet(random.nextInt(alphabet.length))
       var maxProbabilityChildsAfterEpsilon: Int = 0
       var afterEpsilonNodeWithMoreFreq:String = ""
@@ -287,6 +294,12 @@ class TrieNode(val char: Option[Char] = None,
       helperEpsilon(this )
       nextSymbol = afterEpsilonNodeWithMoreFreq
     }
+
+
+
+
+
+
 
 
 
@@ -368,6 +381,15 @@ class TrieNode(val char: Option[Char] = None,
         }
       }
     }
+
+
+
+
+
+
+
+
+
 
     // Caso de nodo hoja sin hijo y sin simbolo siguiente
     // lo que sucede aca es que epsilon se come el siguiente

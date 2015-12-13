@@ -181,12 +181,6 @@ class TrieNode(val char: Option[Char] = None,
   }
 
 
-  /*
-  *@TODO:
-  *  Need to work here, the primary idea is get the frecuency
-  *  of ocurrency for caculate the probability
-  * */
-
   def updateCounters[U](f: String => U): Unit = {
     @tailrec def foreachHelper(nodes: TrieNode*): Unit = {
       if (nodes.size != 0) {
@@ -256,11 +250,12 @@ class TrieNode(val char: Option[Char] = None,
     var currentIndex:Int    = 0
     var nextSymbol:String   = ""
     val resultFindBP        = findByPrefix(param)
+    val lengthFBP:Int       = resultFindBP.length
     val random              = new Random
     var countPosibility:Int = 0
     val stack               = Stack[String]()
     val alphabet            = Stack[String]()
-    var maxProbability:Int      = 0
+    var maxProbability:Int  = 0
 
 
     //,"R","S","T", "U","V","W","X","Y","Z")
@@ -277,7 +272,28 @@ class TrieNode(val char: Option[Char] = None,
      * RAMA NO COMPLETA O UN NODO INTERMEDIO.
      */
 
-    if( param.length == 0 || param =="" || resultFindBP.length == 1 ){
+
+    if( resultFindBP.length == 1 ){
+      nextSymbol = alphabet(random.nextInt(alphabet.length))
+      var maxProbabilityChildsAfterEpsilon: Int = 0
+      var afterEpsilonNodeWithMoreFreq:String = ""
+
+      def helperEpsilon( nodes: TrieNode) = {
+        println("HELPER EPSILON CHILD"+ nodes.children.toString() )
+        for(  ch <- nodes.children  ){
+          if ( ch._2.counter >  maxProbabilityChildsAfterEpsilon && ch._2.word.isDefined ){
+            maxProbabilityChildsAfterEpsilon = ch._2.counter
+            afterEpsilonNodeWithMoreFreq = ch._2.word.get
+          }
+        }
+      }
+      helperEpsilon(this )
+      nextSymbol = afterEpsilonNodeWithMoreFreq
+
+    }
+
+
+    if( param.length == 0 || param =="" ){
       nextSymbol = alphabet(random.nextInt(alphabet.length))
       var maxProbabilityChildsAfterEpsilon: Int = 0
       var afterEpsilonNodeWithMoreFreq:String = ""
@@ -299,88 +315,92 @@ class TrieNode(val char: Option[Char] = None,
 
 
 
+    // CASOS QUE SE ENCUENTRAN DENTRO DEL TREI (INNERS NODOS)
+    if (param.length > 0) {
 
 
+      var maxProbabilityChilds: Int = 0
+      val stackEquiprobable = Stack[String]()
 
 
-    for( t <- 0 until  resultFindBP.length ){
+      pathTo(param) match {
+        case Some(param) => {
+          val current = param.last
 
-      if( t > 0  ) {
-        if( param.length > 1 ) { // SI LA SECUENCIA DE PREGUNTA ES MAYOR QUE 1 SIMBOLO
-
-          countPosibility+=1
-          println( "t \t\t"+ resultFindBP(t) )
-          //println(  "t.stripPrefix(param) "+ resultFindBP(t).stripPrefix(param) )
-          stack.push(resultFindBP(t).stripPrefix(param))
-          //nextSymbol = resultFindBP(t).stripPrefix(param)
-          nextSymbol = stack(random.nextInt(stack.length))
-
-          println(">>>> NODO INTERMEDIO CON MAS DE UN HIJO query: "+param+"  predict: "+nextSymbol)
+          if(  current.children.size > 1   ){
+            maxProbability = current.children.head._2.counter
+          }else{
+            maxProbability = 0
+          }
 
 
+          for (n <- current.children) {
+            println( n._2.word.get )
 
-        }else {
-
-          println(">>>> EL NODO TIENE MAS DE DOS HIJO, ES UN NODO INTERMEDIO, Y LA SECUENCIA ES DE LARGO 1 - query: " + param + "  predict: " + nextSymbol)
-          stack.push(resultFindBP(t).stripPrefix(param))
-
-          /** cuando los leo todos
-          if (param.length + 1 == resultFindBP(t).length) {
-            // println(">>>"+ nextSymbol  + "\t "+ resultFindBP(t)  )
-            //8787888nextSymbol = stack(random.nextInt(stack.length) )
-
-            //println(">>>> PATH TO I READ ALL THE EVENT BEFORE  query: " + param + "  predict: " + nextSymbol)
-          }*/
-
-            if( param.length > 0 ){
-
-            pathTo(param) match {
-              case Some(param) => {
-                var index = 0
-                var continue = true
-                param(index).word = None
-
-                while (continue) {
-                  val current = param(index)
-
-                  if (current.counter > maxProbability && current.word.isDefined) {
-                    nextSymbol = current.word.get  //<--- ver si la piso
-
-                    var maxProbabilityChilds: Int = 0
-                    val stackEquiprobable = Stack[String]()
-                    stackEquiprobable.clear() // LIMPIO ANTES PUSHEAR
-
-
-                    for (ch <- current.children) {
-
-
-                      if (ch._2.counter > maxProbabilityChilds) {
-                        maxProbabilityChilds = ch._2.counter
-                        println(ch._2.word.get)
-                      }
-
-                      // IDEALMENTE UN MODELO DE NAVEGACION BASADO EN LZ DEBERIA EVITAR LOS EVENTOS EQUIPROBABLES
-                      if (ch._2.counter == maxProbabilityChilds) {
-                        maxProbabilityChilds = ch._2.counter
-                        println(" Symbolo equiprobables " + ch._2.word.get + "cuando se consulta: " + current.word + "\t" + ch._2.word.get.stripPrefix(current.word.get))
-                        stackEquiprobable.push(ch._2.word.get.stripPrefix(current.word.get))
-                      }
-
-
-                      // Si tengo eventos  equiprobables devuelvo solo 1 y vacio
-                      if (stackEquiprobable.size > 0) nextSymbol = stackEquiprobable(random.nextInt(stackEquiprobable.length))
-
-                    }
-                    continue = false
-                  }
-                  index += 1
-                }
-              }
+            // CASO EQUIPROBABLE - fill data
+            if (n._2.counter == maxProbability) {
+              maxProbability = n._2.counter
+              println( ">>>>>>>"+n._2.word.get.stripPrefix(current.word.get)    )
+              stackEquiprobable.push(n._2.word.get.stripPrefix(current.word.get))
             }
+
+            // CASO SIMPLE - devolver solo el que tenga mayor probabilidad
+            if (n._2.counter > maxProbability) {
+              maxProbability = n._2.counter
+              nextSymbol = n._2.word.get.stripPrefix(current.word.get)
+            }
+
+            // Si tengo mas de 2 evento equiprobables devuelvo solo 1 dentro de los candidatos
+            if (stackEquiprobable.size > 1 ){
+              println("stack"+  stackEquiprobable.toString() + "length "+stackEquiprobable.size     )
+              nextSymbol = stackEquiprobable(random.nextInt(stackEquiprobable.length));
+              //stackEquiprobable.clear()
+            }
+
+
+            ///for( s <- stackEquiprobable) println( s );
+
           }
         }
+        // Faltaría un caso en que la consulta no se encuentre
+
+        case None => {
+          println(  "No hay info para este evento"+ findByPrefix(param)    );
+
+          var maxProbabilityChildsAfterEpsilon: Int = 0
+          var afterEpsilonNodeWithMoreFreq:String = ""
+
+          def othercaseHelper(nodes: TrieNode) ={
+            for(  ch <- nodes.children  ){
+              if ( ch._2.counter >  maxProbabilityChildsAfterEpsilon && ch._2.word.isDefined ){
+                maxProbabilityChildsAfterEpsilon = ch._2.counter
+                afterEpsilonNodeWithMoreFreq = ch._2.word.get
+
+                println("HELPER othercaseHelper CHILD"+ nodes.children.toString() +"\t\t"+ch)
+                nextSymbol = afterEpsilonNodeWithMoreFreq
+              }
+            }
+
+
+          }
+          othercaseHelper(this)
+
+
+        }
+
       }
+
+
+      println(">>>> NODO INTERMEDIO CON MAS DE UN HIJO query: " + param + "  predict: " + nextSymbol)
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -395,6 +415,7 @@ class TrieNode(val char: Option[Char] = None,
     // lo que sucede aca es que epsilon se come el siguiente
     // simbolo y despues todos los eventos son equiporbables
     // por lo cual es un random de 1/17 o 1/alphabet
+/*
     if( resultFindBP==""   ){
       nextSymbol = alphabet(random.nextInt(alphabet.length))
       // Aqui hay que poner un some por que en caso de tener dos nodos equiprobables se cae
@@ -402,6 +423,7 @@ class TrieNode(val char: Option[Char] = None,
       println(">>>> NODO HOJA SIN HIJO Y SIN SIMBOLO SIG  query: "+param+"  predict: "+nextSymbol)
     }
 
+*/
 
 
     stack.clear()
@@ -525,6 +547,47 @@ class TrieNode(val char: Option[Char] = None,
 
 
   // Tendria que hacer un metodo que dado Epsilon me retorne el siguiente simbolo con mayor probabilidad.
+
+  def numberOfNodes() = {
+    print("numnber of nodes ");
+
+    var counter:Int = 0
+
+    def foreachHelper(nodes: TrieNode*): Unit = {
+      if (nodes.size != 0) {
+        nodes.foreach(
+          node =>{
+            counter +=1
+          }  )
+        foreachHelper(nodes.flatMap(node => node.children.values): _*)
+
+      }
+    }
+    foreachHelper(this)
+
+    print (">>>> "+ counter+"\n")
+  }
+
+
+
+  def printHeigthTrieNode[U](f: String => U): Unit = {
+    print(" Triee Height:>>>>> ")
+    var height:Int = 0
+    def foreachHelper(nodes: TrieNode*): Unit = {
+      if (nodes.size != 0) {
+
+        height +=1
+
+        foreachHelper(nodes.flatMap(node => node.children.values): _*)
+
+      }
+    }
+    foreachHelper(this)
+    print("\t"+height+" levels"   );
+
+
+  }
+
 
 
 

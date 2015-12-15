@@ -312,9 +312,6 @@ class TrieNode(val char: Option[Char] = None,
     }
 
 
-
-
-
     // CASOS QUE SE ENCUENTRAN DENTRO DEL TREI (INNERS NODOS)
     if (param.length > 0) {
 
@@ -397,78 +394,7 @@ class TrieNode(val char: Option[Char] = None,
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // Caso de nodo hoja sin hijo y sin simbolo siguiente
-    // lo que sucede aca es que epsilon se come el siguiente
-    // simbolo y despues todos los eventos son equiporbables
-    // por lo cual es un random de 1/17 o 1/alphabet
-/*
-    if( resultFindBP==""   ){
-      nextSymbol = alphabet(random.nextInt(alphabet.length))
-      // Aqui hay que poner un some por que en caso de tener dos nodos equiprobables se cae
-
-      println(">>>> NODO HOJA SIN HIJO Y SIN SIMBOLO SIG  query: "+param+"  predict: "+nextSymbol)
-    }
-
-*/
-
-
     stack.clear()
-
-
-
-
-
-
-    @tailrec def predictHelper(nodes: TrieNode*): Unit = {
-      if (nodes.size != 0) {
-
-        var aux:Int = 0
-
-        if(param.length > 0 ){
-        nodes.foreach(
-          node =>{
-
-            var chMatch = param.charAt(currentIndex).toLower
-
-            node.children.get( chMatch ) match {
-              case Some(child) =>{
-                //println(child +"nodesize "+nodes.size )
-
-                if (child.counter > aux  ){
-                  aux = child.counter
-                  //nextSymbol = child.word.get
-                }
-
-              }
-              case None => None
-            }
-          }
-        )
-        }
-
-        predictHelper(nodes.flatMap(node => node.children.values): _*)
-
-      }
-    }
-
-
-    //Se me va fuera de rango
-    //currentIndex += 1
-    predictHelper(this)
     //println(  ">>> predictTo:\t\t what's the next?   "+ param+ "\t ResultPredict: "+ nextSymbol.last.toString +"\t length:  "+ nextSymbol.length+ " of "+nextSymbol )
     //println(  "TRIE \t\t>>>  what's the nextsymbol ?: "+ param+ "\t ResultPredict= "+ nextSymbol+ "\t" )
 
@@ -476,8 +402,8 @@ class TrieNode(val char: Option[Char] = None,
   }
 
 
-  // Retornar el siguiente simbolo con mayor probabilidad
 
+  // Retornar el siguiente simbolo con mayor probabilidad
   def getNodeBySymbol( word : String )  = {
     println("--------------------------- getNodeBySymbo: "+word+" -------------------" )
 
@@ -547,7 +473,6 @@ class TrieNode(val char: Option[Char] = None,
 
 
   // Tendria que hacer un metodo que dado Epsilon me retorne el siguiente simbolo con mayor probabilidad.
-
   def numberOfNodes() = {
     print("numnber of nodes ");
 
@@ -567,7 +492,6 @@ class TrieNode(val char: Option[Char] = None,
 
     print (">>>> "+ counter+"\n")
   }
-
 
 
   def printHeigthTrieNode[U](f: String => U): Unit = {
